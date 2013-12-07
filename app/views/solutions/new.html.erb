@@ -262,6 +262,26 @@
 					$('.draggable').remove();
 					initialize();
 				}
+
+
+				//clear canvas when click clear button (confirm first)
+				$(document).on('click', '#save', function() {
+					if(confirm('Are you sure you want to save the canvas?')) {
+						saveCanvas();
+					}
+				});
+
+				//clear canvas function - clears canvas and resets all arrays
+				function saveCanvas()
+				{
+					console.log("save");
+					var url = canvas.toDataURL('image/png');
+					$("#canvascontent").val(url);
+
+
+				};
+
+
 			});
 		</script>
 	</head>
@@ -271,16 +291,22 @@
 		<h1>New Solution for Problem <%= @problem.id %></h1>
 		<h3><%= @problem.question %>:</h3>
 
-		<!-- <form action="problem_solutions_path(@problem)" method="post">
+		<form action="<%= problem_solutions_path(@problem) %>" method="post">
+			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+			Username: <input type="text" name="solution[username]">
+			Answer: <input type="text" name="solution[answer]">
+			Image Test: <input type="text" name="solution[picture]" id="canvascontent">
+			<input type="submit" value="Submit">
+		</form>
 
-		</form> -->
 
-		<%= simple_form_for [@problem, @solution] do |f| %>
+		<%#= simple_form_for [@problem, @solution] do |f| %>
 
-			 <%= f.input :username %>
-			 <%= f.input :answer %>
-			 <%= f.button :submit %>
-		<% end %>
+			 <%#= f.input :picture %>
+			 <%#= f.input :username %>
+			 <%#= f.input :answer %>
+			 <%#= f.button :submit %>
+		<%# end %>
 	<!-- RUBY/RAILS END -->
 
 		<!-- canvas -->
@@ -293,6 +319,7 @@
 			<div class="choice choice_col" id="yellow"></div>
 			<div class="choice choice_col" id="pink"></div>
 			<button id="clear">Clear</button>
+			<button id="save">Save</button>
 		</div>
 		<!-- font weight picker -->
 		<div class="picker">
