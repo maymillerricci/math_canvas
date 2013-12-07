@@ -1,0 +1,13 @@
+<h1>New Solutions for Problem <%= @problem.id %></h1>
+<h3><%= @problem.question %>:</h3>
+
+<!-- <form action="problem_solutions_path(@problem)" method="post">
+
+</form> -->
+
+<%= simple_form_for [@problem, @solution] do |f| %>
+
+	 <%= f.input :username %>
+	 <%= f.input :answer %>
+	 <%= f.button :submit %>
+<% end %>

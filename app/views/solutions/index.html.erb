@@ -1,0 +1,26 @@
+<h1>Solutions Index for Problem <%= @problem.id %></h1>
+<h3><%= @problem.question %>:</h3>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Username</th>
+			<th>Answer</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+		<% @solutions.each do |solution| %>
+			<tr>
+				<td><%= solution.id %></td>
+				<td><%= solution.username %></td>
+				<td><%= solution.answer %></td>
+			</tr>
+		<% end %> 
+
+
+
+
+	</tbody>
+</table>

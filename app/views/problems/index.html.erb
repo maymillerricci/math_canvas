@@ -1,0 +1,29 @@
+<h1>Problems Index</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Question</th>
+			<th>Answer</th>
+			<th>Show Solutions</th>
+			<th>New Solution</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+		<% @problems.each do |problem| %>
+			<tr>
+				<td><%= problem.id %></td>
+				<td><%= problem.question %></td>
+				<td><%= problem.answer %></td>
+				<td><%= link_to 'Show Solutions', problem_solutions_path(problem) %></td>
+				<td><%= link_to 'New Solution', new_problem_solution_path(problem) %></td>
+			</tr>
+		<% end %> 
+
+
+
+
+	</tbody>
+</table>
