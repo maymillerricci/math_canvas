@@ -12,3 +12,8 @@
  *= require_tree .
  *= require jquery.mobile
  */
+
+.container {
+	width: 960px;
+	margin: 0 auto;
+}
