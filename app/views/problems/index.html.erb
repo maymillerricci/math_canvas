@@ -1,29 +1,13 @@
-<h1>Problems Index</h1>
+<div class="container">
+<h1>List of Math Problems to Solve</h1>
 
-<table>
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Question</th>
-			<th>Answer</th>
-			<th>Show Solutions</th>
-			<th>New Solution</th>
-		</tr>
-	</thead>
-	<tbody>
-		
+	<ul>
 		<% @problems.each do |problem| %>
-			<tr>
-				<td><%= problem.id %></td>
-				<td><%= problem.question %></td>
-				<td><%= problem.answer %></td>
-				<td><%= link_to 'Show Solutions', problem_solutions_path(problem) %></td>
-				<td><%= link_to 'New Solution', new_problem_solution_path(problem) %></td>
-			</tr>
+			
+			<li><%= problem.id %>.
+			<span><%= problem.question %></span>
+			<%= link_to 'Solve!', new_problem_solution_path(problem), class: 'button' %></li>
+			
 		<% end %> 
-
-
-
-
-	</tbody>
-</table>
+	</ul>
+</div>

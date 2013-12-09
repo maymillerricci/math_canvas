@@ -1,350 +1,342 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>May's Canvas</title>
-		<script>
+<head>
+	<script>
 
-			//set all variables
-			var canvasWidth = 600;
-			var canvasHeight = 400;
-			var clickX = new Array();
-			var clickY = new Array();
-			var clickDrag = new Array();
-			var paint;
-			var colorPurple = '#660099';
-			var colorBlue = '#3333CC';
-			var colorGreen = '#336633';
-			var colorYellow = '#FFFF33';
-			var colorPink = '#CC0099';
-			var clickColor = new Array();
-			var curColor = null;
-			var clickSize = new Array();
-			var curSize = null;
-			var clickTool = new Array();
-			var curTool = null;
-			var clickAlpha = new Array();
-			var curAlpha = null;
+		//set all variables
+		var canvasWidth = 600;
+		var canvasHeight = 400;
+		var clickX = new Array();
+		var clickY = new Array();
+		var clickDrag = new Array();
+		var paint;
+		var colorPurple = '#660099';
+		var colorBlue = '#3333CC';
+		var colorGreen = '#336633';
+		var colorYellow = '#FFFF33';
+		var colorPink = '#CC0099';
+		var clickColor = new Array();
+		var curColor = null;
+		var clickSize = new Array();
+		var curSize = null;
+		var clickTool = new Array();
+		var curTool = null;
+		var clickAlpha = new Array();
+		var curAlpha = null;
 
-			$(document).ready(function() {
+		$(document).ready(function() {
 
-				function initialize() {
-					curColor = colorPurple;
-					curSize = 10;
-					curTool = 'marker';
-					curAlpha = 1;
+			function initialize() {
+				curColor = colorPurple;
+				curSize = 10;
+				curTool = 'marker';
+				curAlpha = 1;
 
-					//remove and set borders on default options on page load or clear
-					$('.choice').removeClass('highlight');
-					$('#purple, #normal, #marker').addClass('highlight');
+				//remove and set borders on default options on page load or clear
+				$('.choice').removeClass('highlight');
+				$('#purple, #normal, #marker').addClass('highlight');
 
-					//load images in stamp picker
-					$('#img1').append('<%= image_tag "butterfly.png", class: "draggable new_stamp" %>');
-					$('#img2').append('<%= image_tag "apple.png", class: "draggable new_stamp" %>');
-					$('#img3').append('<%= image_tag "goldfish.png", class: "draggable new_stamp" %>');
-					$('#img4').append('<%= image_tag "sun.png", class: "draggable new_stamp" %>');
-					$('#img5').append('<%= image_tag "tree.png", class: "draggable new_stamp" %>');
-					$('#img6').append('<%= image_tag "earth.png", class: "draggable new_stamp" %>');
-					$('#img7').append('<%= image_tag "octopus.png", class: "draggable new_stamp" %>');
-					$('#img8').append('<%= image_tag "teddybear.png", class: "draggable new_stamp" %>');
-					$('#img9').append('<%= image_tag "ninja.png", class: "draggable new_stamp" %>');
-					$('#img10').append('<%= image_tag "whale.png", class: "draggable new_stamp" %>');
-					$(".draggable").draggable();
-				}
+				//load images in stamp picker
+				$('#img1').append('<%= image_tag "butterfly.png", class: "draggable new_stamp" %>');
+				$('#img2').append('<%= image_tag "apple.png", class: "draggable new_stamp" %>');
+				$('#img3').append('<%= image_tag "goldfish.png", class: "draggable new_stamp" %>');
+				$('#img4').append('<%= image_tag "sun.png", class: "draggable new_stamp" %>');
+				$('#img5').append('<%= image_tag "tree.png", class: "draggable new_stamp" %>');
+				$('#img6').append('<%= image_tag "earth.png", class: "draggable new_stamp" %>');
+				$('#img7').append('<%= image_tag "octopus.png", class: "draggable new_stamp" %>');
+				$('#img8').append('<%= image_tag "teddybear.png", class: "draggable new_stamp" %>');
+				$('#img9').append('<%= image_tag "ninja.png", class: "draggable new_stamp" %>');
+				$('#img10').append('<%= image_tag "whale.png", class: "draggable new_stamp" %>');
+				$(".draggable").draggable();
+			}
 
-				//set 2d context
-				context = document.getElementById('canvas').getContext('2d');
+			//set 2d context
+			context = document.getElementById('canvas').getContext('2d');
 
-				//set height and width of canvas
-				$('#canvas').attr({
-					width: canvasWidth,
-					height: canvasHeight
-				});
+			//set height and width of canvas
+			$('#canvas').attr({
+				width: canvasWidth,
+				height: canvasHeight
+			});
 
-				initialize();
+			initialize();
 
-				//drawing - on mousedown
-				$(document).on('vmousedown', '#canvas', function(e) {
-					e.preventDefault();
+			//drawing - on mousedown
+			$(document).on('vmousedown', '#canvas', function(e) {
+				e.preventDefault();
+				var mouseX = e.pageX - this.offsetLeft;
+				var mouseY = e.pageY - this.offsetTop;
+				paint = true;
+				addClick(mouseX, mouseY);
+				redraw();
+			});
+				
+			//drawing - on mousemove
+			$(document).on('vmousemove', '#canvas', function(e) {
+				e.preventDefault();
+				if(paint) {
 					var mouseX = e.pageX - this.offsetLeft;
 					var mouseY = e.pageY - this.offsetTop;
-					paint = true;
-					addClick(mouseX, mouseY);
+					addClick(mouseX, mouseY, true);
 					redraw();
-				});
-					
-				//drawing - on mousemove
-				$(document).on('vmousemove', '#canvas', function(e) {
-					e.preventDefault();
-					if(paint) {
-						var mouseX = e.pageX - this.offsetLeft;
-						var mouseY = e.pageY - this.offsetTop;
-						addClick(mouseX, mouseY, true);
-						redraw();
-					}
-				});
-
-				//drawing - on mouseup
-				$(document).on('vmouseup', '#canvas', function(e) {
-					e.preventDefault();
-					paint = false;
-				});
-
-				//drawing - on mouse leaving the canvas
-				$(document).on('mouseleave', '#canvas', function(e) {
-					paint = false;
-				});
-
-				$(document).on('vclick', '#canvas', function(e) {
-					e.preventDefault();
-				});
-
-				//drawing - on mouse re-entering the canvas - WORK ON THIS!!!?
-				// $(document).on('mouseenter', '#canvas', function(e) {
-				// 	paint = true;
-				// });
-
-				//add click function
-				function addClick(x, y, dragging)
-				{
-					if(curTool == "eraser") {
-						curColor = "white";
-					}	
-					clickX.push(x);
-					clickY.push(y);
-					clickDrag.push(dragging);
-					clickColor.push(curColor);
-					clickSize.push(curSize);
-					// clickTool.push(curTool);
-					clickAlpha.push(curAlpha);
 				}
-
-				//redraw function
-				function redraw() {
-					context.clearRect(0, 0, canvasWidth, canvasHeight);
-					context.lineJoin = "round";
-					for(var i=0; i<clickX.length; i++) {
-						context.beginPath();
-						if(clickDrag[i] && i) {
-							context.moveTo(clickX[i-1], clickY[i-1]);
-						} else {
-							context.moveTo(clickX[i]-1, clickY[i]);
-						}
-						context.lineTo(clickX[i], clickY[i]);
-						context.closePath();
-						context.strokeStyle = clickColor[i];
-						context.lineWidth = clickSize[i];
-						context.globalAlpha = clickAlpha[i];
-						context.stroke();
-					}
-				}
-
-				//add highlight class for border
-				function highlight(choice) {
-					var choice_class = choice.attr('class').substr(7,10);
-					$('.' + choice_class).removeClass('highlight');
-					$(choice).addClass('highlight');
-				}
-
-				$(document).on('vclick', '.choice_col', function() {
-					if(curTool == 'eraser') {
-						curTool = 'marker';
-						$('#eraser').removeClass('highlight');
-						$('#marker').addClass('highlight');
-					}
-				});
-
-				//change current color when click on colors in color picker
-				$(document).on('vclick', '#purple', function() {
-					curColor = colorPurple;
-					highlight($(this));
-				});
-				$(document).on('vclick', '#blue', function() {
-					curColor = colorBlue;
-					highlight($(this));
-				});
-				$(document).on('vclick', '#green', function() {
-					curColor = colorGreen;
-					highlight($(this));
-				});
-				$(document).on('vclick', '#yellow', function() {
-					curColor = colorYellow;
-					highlight($(this));
-				});
-				$(document).on('vclick', '#pink', function() {
-					curColor = colorPink;
-					highlight($(this));
-				});
-
-				//change current font weight when click on options in font weight picker
-				$(document).on('vclick', '#small', function() {
-					curSize = 4;
-					highlight($(this));
-				});
-				$(document).on('vclick', '#normal', function() {
-					curSize = 10;
-					highlight($(this));
-				});
-				$(document).on('vclick', '#large', function() {
-					curSize = 17;
-					highlight($(this));
-				});
-				$(document).on('vclick', '#huge', function() {
-					curSize = 23;
-					highlight($(this));
-				});
-
-				//change current tool when click on options in tool picker
-				$(document).on('vclick', '#marker', function() {
-					curTool = 'marker';
-					curAlpha = 1;
-					if(curColor == 'white') {
-						curColor = colorPurple;
-					}
-					highlight($(this));
-				});
-				$(document).on('vclick', '#crayon', function() {
-					curTool = 'crayon';
-					curAlpha = 0.4;
-					if(curColor == 'white') {
-						curColor = colorPurple;
-					}
-					highlight($(this));
-				});
-				$(document).on('vclick', '#eraser', function() {
-					curTool = 'eraser';
-					curAlpha = 1;
-					highlight($(this));
-					$('.choice_col').removeClass('highlight');
-				});
-
-				// //change color of font weight options depending on current color - use this or not???
-				// $(document).on('vclick', '.choice_col', function() {
-				// 	if(curColor==colorPurple) {
-				// 		$('.line').css('background-color', colorPurple);
-				// 	} else if(curColor==colorBlue) {
-				// 		$('.line').css('background-color', colorBlue);
-				// 	} else if(curColor==colorGreen) {
-				// 		$('.line').css('background-color', colorGreen);
-				// 	} else if(curColor==colorYellow) {
-				// 		$('.line').css('background-color', colorYellow);
-				// 	} else if(curColor==colorPink) {
-				// 		$('.line').css('background-color', colorPink);
-				// 	}
-				// });
-
-				//draggable - make stamps draggable and when one is dragged replace with new one
-				$(document).on('vmousedown', '.new_stamp', function() {
-					$(this).removeClass('new_stamp');
-					var img_path = $(this).attr('src');
-					var stamp_id = $(this).parent().attr('id');
-					$('#' + stamp_id).append("<img class='draggable new_stamp' src='" + img_path + "'>");
-					$(".draggable").draggable();
-				});
-				
-				//clear canvas when click clear button (confirm first)
-				$(document).on('click', '#clear', function() {
-					if(confirm('Are you sure you want to clear the canvas?')) {
-						clearCanvas();
-					}
-				});
-
-				//clear canvas function - clears canvas and resets all arrays
-				function clearCanvas()
-				{
-					context.clearRect(0, 0, canvasWidth, canvasHeight);
-					clickX.length = 0;
-					clickY.length = 0;
-					clickDrag.length = 0;
-					clickColor.length = 0;
-					clickSize.length = 0;
-					clickAlpha.length = 0;
-					$('.draggable').remove();
-					initialize();
-				}
-
-
-				//save canvas when click save button (confirm first)
-				$(document).on('click', '#save', function() {
-					if(confirm('Are you sure you want to save the canvas?')) {
-						saveCanvas();
-					}
-				});
-
-				//save canvas function
-				function saveCanvas()
-				{
-					var url = canvas.toDataURL('image/png');
-					$("#solution_picture").val(url);
-				};
-
-
 			});
-		</script>
-	</head>
-	<body>
+
+			//drawing - on mouseup
+			$(document).on('vmouseup', '#canvas', function(e) {
+				e.preventDefault();
+				paint = false;
+			});
+
+			//drawing - on mouse leaving the canvas
+			$(document).on('mouseleave', '#canvas', function(e) {
+				paint = false;
+			});
+
+			$(document).on('vclick', '#canvas', function(e) {
+				e.preventDefault();
+			});
+
+			//drawing - on mouse re-entering the canvas - WORK ON THIS!!!?
+			// $(document).on('mouseenter', '#canvas', function(e) {
+			// 	paint = true;
+			// });
+
+			//add click function
+			function addClick(x, y, dragging)
+			{
+				if(curTool == "eraser") {
+					curColor = "white";
+				}	
+				clickX.push(x);
+				clickY.push(y);
+				clickDrag.push(dragging);
+				clickColor.push(curColor);
+				clickSize.push(curSize);
+				// clickTool.push(curTool);
+				clickAlpha.push(curAlpha);
+			}
+
+			//redraw function
+			function redraw() {
+				context.clearRect(0, 0, canvasWidth, canvasHeight);
+				context.lineJoin = "round";
+				for(var i=0; i<clickX.length; i++) {
+					context.beginPath();
+					if(clickDrag[i] && i) {
+						context.moveTo(clickX[i-1], clickY[i-1]);
+					} else {
+						context.moveTo(clickX[i]-1, clickY[i]);
+					}
+					context.lineTo(clickX[i], clickY[i]);
+					context.closePath();
+					context.strokeStyle = clickColor[i];
+					context.lineWidth = clickSize[i];
+					context.globalAlpha = clickAlpha[i];
+					context.stroke();
+				}
+			}
+
+			//add highlight class for border
+			function highlight(choice) {
+				var choice_class = choice.attr('class').substr(7,10);
+				$('.' + choice_class).removeClass('highlight');
+				$(choice).addClass('highlight');
+			}
+
+			$(document).on('vclick', '.choice_col', function() {
+				if(curTool == 'eraser') {
+					curTool = 'marker';
+					$('#eraser').removeClass('highlight');
+					$('#marker').addClass('highlight');
+				}
+			});
+
+			//change current color when click on colors in color picker
+			$(document).on('vclick', '#purple', function() {
+				curColor = colorPurple;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#blue', function() {
+				curColor = colorBlue;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#green', function() {
+				curColor = colorGreen;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#yellow', function() {
+				curColor = colorYellow;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#pink', function() {
+				curColor = colorPink;
+				highlight($(this));
+			});
+
+			//change current font weight when click on options in font weight picker
+			$(document).on('vclick', '#small', function() {
+				curSize = 4;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#normal', function() {
+				curSize = 10;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#large', function() {
+				curSize = 17;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#huge', function() {
+				curSize = 23;
+				highlight($(this));
+			});
+
+			//change current tool when click on options in tool picker
+			$(document).on('vclick', '#marker', function() {
+				curTool = 'marker';
+				curAlpha = 1;
+				if(curColor == 'white') {
+					curColor = colorPurple;
+				}
+				highlight($(this));
+			});
+			$(document).on('vclick', '#crayon', function() {
+				curTool = 'crayon';
+				curAlpha = 0.4;
+				if(curColor == 'white') {
+					curColor = colorPurple;
+				}
+				highlight($(this));
+			});
+			$(document).on('vclick', '#eraser', function() {
+				curTool = 'eraser';
+				curAlpha = 1;
+				highlight($(this));
+				$('.choice_col').removeClass('highlight');
+			});
+
+			// //change color of font weight options depending on current color - use this or not???
+			// $(document).on('vclick', '.choice_col', function() {
+			// 	if(curColor==colorPurple) {
+			// 		$('.line').css('background-color', colorPurple);
+			// 	} else if(curColor==colorBlue) {
+			// 		$('.line').css('background-color', colorBlue);
+			// 	} else if(curColor==colorGreen) {
+			// 		$('.line').css('background-color', colorGreen);
+			// 	} else if(curColor==colorYellow) {
+			// 		$('.line').css('background-color', colorYellow);
+			// 	} else if(curColor==colorPink) {
+			// 		$('.line').css('background-color', colorPink);
+			// 	}
+			// });
+
+			//draggable - make stamps draggable and when one is dragged replace with new one
+			$(document).on('vmousedown', '.new_stamp', function() {
+				$(this).removeClass('new_stamp');
+				var img_path = $(this).attr('src');
+				var stamp_id = $(this).parent().attr('id');
+				$('#' + stamp_id).append("<img class='draggable new_stamp' src='" + img_path + "'>");
+				$(".draggable").draggable();
+			});
+			
+			//clear canvas when click clear button (confirm first)
+			$(document).on('click', '#clear', function() {
+				if(confirm('Are you sure you want to clear the canvas?')) {
+					clearCanvas();
+				}
+			});
+
+			//clear canvas function - clears canvas and resets all arrays
+			function clearCanvas()
+			{
+				context.clearRect(0, 0, canvasWidth, canvasHeight);
+				clickX.length = 0;
+				clickY.length = 0;
+				clickDrag.length = 0;
+				clickColor.length = 0;
+				clickSize.length = 0;
+				clickAlpha.length = 0;
+				$('.draggable').remove();
+				initialize();
+			}
+
+
+			//save canvas when click save button (confirm first)
+			$(document).on('click', '#save', function() {
+				if(confirm('Are you sure you want to save the canvas?')) {
+					saveCanvas();
+				}
+			});
+
+			//save canvas function
+			function saveCanvas()
+			{
+				var url = canvas.toDataURL('image/png');
+				$("#solution_picture").val(url);
+			};
+
+
+		});
+	</script>
+</head>
+<body>
 
 	<!-- RUBY/RAILS START -->
-		<h1>New Solution for Problem <%= @problem.id %></h1>
-		<h3><%= @problem.question %>:</h3>
+	<h1>New Solution for Problem <%= @problem.id %></h1>
+	<h3><%= @problem.question %>:</h3>
 
-		<!-- <form action="<%= problem_solutions_path(@problem) %>" method="post">
-			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-			Username: <input type="text" name="solution[username]">
-			Answer: <input type="text" name="solution[answer]">
-			Image Test: <input type="text" name="solution[picture]" id="canvascontent">
-			<input type="submit" value="Submit">
-		</form> -->
-
-
-		<%= simple_form_for [@problem, @solution], html: {multipart: true, :'data-ajax' => false} do |f| %>
-
-			 <%= f.input :username %>
-			 <%= f.input :answer %>
-			 <%= f.input :picture, as: :hidden %>
-			 <%= f.button :submit, id: :save %>
-		<% end %>
-
-		<!-- canvas -->
-		<canvas id="canvas"></canvas> 
-		<!-- color picker -->
-		<div class="picker">
-			<div class="choice choice_col" id="purple"></div>
-			<div class="choice choice_col" id="blue"></div>
-			<div class="choice choice_col" id="green"></div>
-			<div class="choice choice_col" id="yellow"></div>
-			<div class="choice choice_col" id="pink"></div>
-			<button id="clear">Clear</button>
-		</div>
-		<!-- font weight picker -->
-		<div class="picker">
-			<div class="choice choice_wgt" id="small"><div class="line" id="line_small"></div></div>
-			<div class="choice choice_wgt" id="normal"><div class="line" id="line_normal"></div></div>
-			<div class="choice choice_wgt" id="large"><div class="line" id="line_large"></div></div>
-			<div class="choice choice_wgt" id="huge"><div class="line" id="line_huge"></div></div>
-		</div>
-		<!-- tool picker -->
-		<div class="picker">
-			<div class="choice choice_tol" id="marker"><%= image_tag "marker.png" %></div>
-			<div class="choice choice_tol" id="crayon"><%= image_tag "crayon.png" %></div>
-			<div class="choice choice_tol" id="eraser"><%= image_tag "eraser.png" %></div>
-		</div>
-		<!-- stamps -->
-		<div id="drag_picker">
-			<div class="img" id="img1"></div>
-			<div class="img" id="img2"></div>
-			<div class="img" id="img3"></div>
-			<div class="img" id="img4"></div>
-			<div class="img" id="img5"></div>
-			<div class="img" id="img6"></div>
-			<div class="img" id="img7"></div>
-			<div class="img" id="img8"></div>
-			<div class="img" id="img9"></div>
-			<div class="img" id="img10"></div>
-		</div>
+	<!-- <form action="<%= problem_solutions_path(@problem) %>" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		Username: <input type="text" name="solution[username]">
+		Answer: <input type="text" name="solution[answer]">
+		Image Test: <input type="text" name="solution[picture]" id="canvascontent">
+		<input type="submit" value="Submit">
+	</form> -->
 
 
+	<%= simple_form_for [@problem, @solution], html: {multipart: true, :'data-ajax' => false} do |f| %>
 
-	</body>
-</html>
+		 <%= f.input :username %>
+		 <%= f.input :answer %>
+		 <%= f.input :picture, as: :hidden %>
+		 <%= f.button :submit, id: :save %>
+	<% end %>
+
+	<!-- canvas -->
+	<canvas id="canvas"></canvas> 
+	<!-- color picker -->
+	<div class="picker">
+		<div class="choice choice_col" id="purple"></div>
+		<div class="choice choice_col" id="blue"></div>
+		<div class="choice choice_col" id="green"></div>
+		<div class="choice choice_col" id="yellow"></div>
+		<div class="choice choice_col" id="pink"></div>
+		<button id="clear">Clear</button>
+	</div>
+	<!-- font weight picker -->
+	<div class="picker">
+		<div class="choice choice_wgt" id="small"><div class="line" id="line_small"></div></div>
+		<div class="choice choice_wgt" id="normal"><div class="line" id="line_normal"></div></div>
+		<div class="choice choice_wgt" id="large"><div class="line" id="line_large"></div></div>
+		<div class="choice choice_wgt" id="huge"><div class="line" id="line_huge"></div></div>
+	</div>
+	<!-- tool picker -->
+	<div class="picker">
+		<div class="choice choice_tol" id="marker"><%= image_tag "marker.png" %></div>
+		<div class="choice choice_tol" id="crayon"><%= image_tag "crayon.png" %></div>
+		<div class="choice choice_tol" id="eraser"><%= image_tag "eraser.png" %></div>
+	</div>
+	<!-- stamps -->
+	<div id="drag_picker">
+		<div class="img" id="img1"></div>
+		<div class="img" id="img2"></div>
+		<div class="img" id="img3"></div>
+		<div class="img" id="img4"></div>
+		<div class="img" id="img5"></div>
+		<div class="img" id="img6"></div>
+		<div class="img" id="img7"></div>
+		<div class="img" id="img8"></div>
+		<div class="img" id="img9"></div>
+		<div class="img" id="img10"></div>
+	</div>
+</body>
 

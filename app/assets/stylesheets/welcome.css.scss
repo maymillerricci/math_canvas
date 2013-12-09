@@ -2,14 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1 {
+.text_align_center {
 	text-align: center;
 }
 img {
 	width: 400px;
 	float: left;
 }
-p {
-width: 500px;
+.float_right {
+	width: 500px;
 	float: right;
 }

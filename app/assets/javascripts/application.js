@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require app_lib
 //= require jquery_ujs
 //= require jquery.ui.draggable
 //= require jquery.mobile

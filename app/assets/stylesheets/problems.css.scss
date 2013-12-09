@@ -2,10 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
-	color: slateblue;
-	font-family: "Trebuchet MS", Helvetica, sans-serif
+ul {
+	list-style: none;
 }
+li {
+	padding: 25px 0px;
+	font-size: 120%;
+}
+li span {
+	padding: 0px 30px;
+}
+div.container ul a.button.ui-link {
+  background-color: slateblue;
+  color: white;
+  font-size: 90%;
+  padding: 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: normal;
+  letter-spacing: 1.5px;
+  text-shadow: none;
+}
+
 table {
 	border-collapse: collapse;
   	margin: 50px 10px 10px 10px;
