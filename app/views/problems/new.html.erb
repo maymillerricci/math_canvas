@@ -1,0 +1,5 @@
+<%= simple_form_for @problem, html: {:'data-ajax' => false} do |f| %>
+			 <%= f.input :question %>
+			 <%= f.input :answer %>
+			 <%= f.button :submit %>
+		<% end %>
