@@ -1,6 +1,6 @@
 CanvasMathTest1::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-config.assets.paths << Rails.root.join(‘app’, ‘assets’, ‘fonts’)
+config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 config.assets.precompile += %w(.svg .eot .woff .ttf)
   # Code is not reloaded between requests.
   config.cache_classes = true
