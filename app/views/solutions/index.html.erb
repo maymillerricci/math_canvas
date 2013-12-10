@@ -1,28 +1,19 @@
-<h1>Solutions Index for Problem <%= @problem.id %></h1>
-<h3><%= @problem.question %>:</h3>
+<div class="container">
+	<h1>Solutions</h1>
+	<h3><%= @problem.question %>:</h3>
 
-<table>
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Username</th>
-			<th>Answer</th>
-			<th>Picture</th>
-		</tr>
-	</thead>
-	<tbody>
-		
+
+
+	<ul>
 		<% @solutions.each do |solution| %>
-			<tr>
-				<td><%= solution.id %></td>
-				<td><%= solution.username %></td>
-				<td><%= solution.answer %></td>
-				<td><%= image_tag solution.picture %></td>
-			</tr>
+				
+			<li>
+				<%= solution.id %>.
+				<span><%= solution.username %></span>
+				<%= solution.answer %>
+			</li>
+				<%= image_tag solution.picture, class: :solution %>
 		<% end %> 
+	</ul>
 
-
-
-
-	</tbody>
-</table>
+</div>

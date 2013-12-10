@@ -8,15 +8,17 @@
 </script>
 
 <div class="container">
-<h1>List of Math Problems to Solve</h1>
+	<h1>List of Math Problems to Solve</h1>
 
-	<ul class="problems">
-		<% @problems.each do |problem| %>
-			
-			<li><%= problem.id %>.
-			<span><%= problem.question %></span>
-			<%= link_to 'Solve!', new_problem_solution_path(problem), class: :button, id: 'solve', 'data-ajax' => false %></li>
-			
-		<% end %> 
-	</ul>
+		<ul class="problems">
+			<% @problems.each do |problem| %>
+				
+				<li>
+					<%= problem.id %>.
+					<span><%= problem.question %></span>
+					<%= link_to 'Solve!', new_problem_solution_path(problem), class: :button, id: 'solve', 'data-ajax' => false %>
+				</li>
+				
+			<% end %> 
+		</ul>
 </div>
