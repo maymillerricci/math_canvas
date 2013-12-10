@@ -1,12 +1,21 @@
+<script>	
+	$(document).ready(function() {
+		$('.problems li a').click(function(e) {
+			// e.preventDefault();
+			window.location.href = this.href;
+		})
+	});
+</script>
+
 <div class="container">
 <h1>List of Math Problems to Solve</h1>
 
-	<ul>
+	<ul class="problems">
 		<% @problems.each do |problem| %>
 			
 			<li><%= problem.id %>.
 			<span><%= problem.question %></span>
-			<%= link_to 'Solve!', new_problem_solution_path(problem), class: 'button' %></li>
+			<%= link_to 'Solve!', new_problem_solution_path(problem), class: :button, id: 'solve', 'data-ajax' => false %></li>
 			
 		<% end %> 
 	</ul>
