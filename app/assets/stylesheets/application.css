@@ -13,16 +13,9 @@
  *= require_tree .
  */
 
-@font-face {
-  font-family: 'vaground';
-  src: url('vaground.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 .container {
 	width: 960px;
 	margin: 0 auto;
-	font-family: 'vaground' sans-serif;
+	font-family: 'Arial Rounded MT Bold' Arial sans-serif;
 	font-size: 150%;
 }
