@@ -14,5 +14,4 @@
 //= require jquery_ujs
 //= require jquery.ui.draggable
 //= require jquery.mobile
-//= require turbolinks
 //= require_tree .
