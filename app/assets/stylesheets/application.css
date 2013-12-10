@@ -23,6 +23,6 @@
 .container {
 	width: 960px;
 	margin: 0 auto;
-	font-family: 'vaground', sans-serif;
+	font-family: 'vaground', 'Arial Rounded MT Bold', Arial, sans-serif;
 	font-size: 150%;
 }
