@@ -1,19 +1,15 @@
-<div class="container">
-	<h1>Solutions</h1>
-	<h3><%= @problem.question %>:</h3>
+<h1>Solutions</h1>
+<h3><%= @problem.question %>:</h3>
 
 
-
-	<ul>
-		<% @solutions.each do |solution| %>
-				
-			<li>
-				<%= solution.id %>.
-				<span><%= solution.username %></span>
-				<%= solution.answer %>
-			</li>
-				<%= image_tag solution.picture, class: :solution %>
-		<% end %> 
-	</ul>
-
-</div>
+<ul>
+	<% @solutions.each do |solution| %>
+			
+		<li>
+			<%= solution.id %>.
+			<span><%= solution.username %></span>
+			<%= solution.answer %>
+		</li>
+			<%= image_tag solution.picture, class: :solution %>
+	<% end %> 
+</ul>

@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 
-  <title>Math Canvas</title>
+	  <title>Math Canvas</title>
 
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	  <%= csrf_meta_tags %>
 
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+	</head>
+	<body>
+		<div class="container">
+			<div class="nav">
+				<ul>
+					<li>
+						<%= link_to 'Home', root_path %>
+						<%= link_to 'Math Problems', problems_path %>
+						<%= link_to 'Solutions Gallery', problems_path %>
+					</li>				
+	
+				</ul>
+			</div>
+			<%= yield %>
+		</div>
+	</body>
 </html>

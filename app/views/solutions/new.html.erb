@@ -280,65 +280,62 @@
 	</script>
 </head>
 <body>
-	<div class="container">
-		<h1>Draw Solution</h1>
-		<h3><%= @problem.question %>:</h3>
+	<h1>Draw Solution</h1>
+	<h3><%= @problem.question %>:</h3>
 
-		<!-- canvas -->
-		<canvas id="canvas"></canvas> 
-		<!-- color picker -->
-		<div class="picker">
-			<div class="choice choice_col" id="purple"></div>
-			<div class="choice choice_col" id="blue"></div>
-			<div class="choice choice_col" id="green"></div>
-			<div class="choice choice_col" id="yellow"></div>
-			<div class="choice choice_col" id="pink"></div>
-			<button id="clear">Clear</button>
-		</div>
-		<!-- font weight picker -->
-		<div class="picker">
-			<div class="choice choice_wgt" id="small"><div class="line" id="line_small"></div></div>
-			<div class="choice choice_wgt" id="normal"><div class="line" id="line_normal"></div></div>
-			<div class="choice choice_wgt" id="large"><div class="line" id="line_large"></div></div>
-			<div class="choice choice_wgt" id="huge"><div class="line" id="line_huge"></div></div>
-		</div>
-		<!-- tool picker -->
-		<div class="picker">
-			<div class="choice choice_tol" id="marker"><%= image_tag "marker.png" %></div>
-			<div class="choice choice_tol" id="crayon"><%= image_tag "crayon.png" %></div>
-			<div class="choice choice_tol" id="eraser"><%= image_tag "eraser.png" %></div>
-		</div>
-		<!-- stamps -->
-		<div id="drag_picker">
-			<div class="img" id="img1"></div>
-			<div class="img" id="img2"></div>
-			<div class="img" id="img3"></div>
-			<div class="img" id="img4"></div>
-			<div class="img" id="img5"></div>
-			<div class="img" id="img6"></div>
-			<div class="img" id="img7"></div>
-			<div class="img" id="img8"></div>
-			<div class="img" id="img9"></div>
-			<div class="img" id="img10"></div>
-		</div>
-		<!-- <form action="<%= problem_solutions_path(@problem) %>" method="post">
-			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-			Username: <input type="text" name="solution[username]">
-			Answer: <input type="text" name="solution[answer]">
-			Image Test: <input type="text" name="solution[picture]" id="canvascontent">
-			<input type="submit" value="Submit">
-		</form> -->
+	<!-- canvas -->
+	<canvas id="canvas"></canvas> 
+	<!-- color picker -->
+	<div class="picker">
+		<div class="choice choice_col" id="purple"></div>
+		<div class="choice choice_col" id="blue"></div>
+		<div class="choice choice_col" id="green"></div>
+		<div class="choice choice_col" id="yellow"></div>
+		<div class="choice choice_col" id="pink"></div>
+		<button id="clear">Clear</button>
+	</div>
+	<!-- font weight picker -->
+	<div class="picker">
+		<div class="choice choice_wgt" id="small"><div class="line" id="line_small"></div></div>
+		<div class="choice choice_wgt" id="normal"><div class="line" id="line_normal"></div></div>
+		<div class="choice choice_wgt" id="large"><div class="line" id="line_large"></div></div>
+		<div class="choice choice_wgt" id="huge"><div class="line" id="line_huge"></div></div>
+	</div>
+	<!-- tool picker -->
+	<div class="picker">
+		<div class="choice choice_tol" id="marker"><%= image_tag "marker.png" %></div>
+		<div class="choice choice_tol" id="crayon"><%= image_tag "crayon.png" %></div>
+		<div class="choice choice_tol" id="eraser"><%= image_tag "eraser.png" %></div>
+	</div>
+	<!-- stamps -->
+	<div id="drag_picker">
+		<div class="img" id="img1"></div>
+		<div class="img" id="img2"></div>
+		<div class="img" id="img3"></div>
+		<div class="img" id="img4"></div>
+		<div class="img" id="img5"></div>
+		<div class="img" id="img6"></div>
+		<div class="img" id="img7"></div>
+		<div class="img" id="img8"></div>
+		<div class="img" id="img9"></div>
+		<div class="img" id="img10"></div>
+	</div>
+	<!-- <form action="<%= problem_solutions_path(@problem) %>" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		Username: <input type="text" name="solution[username]">
+		Answer: <input type="text" name="solution[answer]">
+		Image Test: <input type="text" name="solution[picture]" id="canvascontent">
+		<input type="submit" value="Submit">
+	</form> -->
 
 
-		<%= simple_form_for [@problem, @solution], html: {multipart: true, :'data-ajax' => false} do |f| %>
+	<%= simple_form_for [@problem, @solution], html: {multipart: true, :'data-ajax' => false} do |f| %>
 
-			 <%= f.input :username %>
-			 <%= f.input :answer %>
-			 <%= f.input :picture, as: :hidden %>
-			 <%= f.button :submit, class: :button, id: :save %>
-		<% end %>
-
-	</div> <!-- close container div -->
+		 <%= f.input :username %>
+		 <%= f.input :answer %>
+		 <%= f.input :picture, as: :hidden %>
+		 <%= f.button :submit, class: :button, id: :save %>
+	<% end %>
 
 </body>
 

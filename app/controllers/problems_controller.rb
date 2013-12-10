@@ -1,6 +1,10 @@
 class ProblemsController < ApplicationController
 
   def index
+    @problems = Problem.all
+  end 
+
+  def index2
   	@problems = Problem.all
   end
 
