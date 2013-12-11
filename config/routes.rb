@@ -5,10 +5,11 @@ CanvasMathTest1::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   
-  get "problems/index2"
+  get "problems/solve"
+  get "problems/gallery"
   
-  resources :problems do
-    resources :solutions
+  resources :problems, only: [:new, :create] do
+    resources :solutions, only: [:index, :new, :create]
   end
 
 

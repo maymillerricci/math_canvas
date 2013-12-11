@@ -12,16 +12,37 @@
 	<body>
 		<div class="container">
 			<div class="nav">
+				<h2 class="nav_title">Math Canvas</h2>
+				<%= image_tag "mathcanvaslogo.png", class: :logo_small %>
 				<ul>
-					<li>
-						<%= link_to 'Home', root_path %>
-						<%= link_to 'Math Problems', problems_path %>
-						<%= link_to 'Solutions Gallery', problems_path %>
-					</li>				
-	
+					<% if @active_page == 'Home' %>
+						<div class='main_link active'>
+					<% else %>
+						<div class='main_link'>
+					<% end %>
+						<li><%= link_to 'Home', root_path %></li>
+					</div>
+
+					<% if @active_page == 'Problems' %>
+						<div class='main_link active'>
+					<% else %>
+						<div class='main_link'>
+					<% end %>
+						<li><%= link_to 'Math Problems', problems_solve_path %></li>
+					</div>
+
+					<% if @active_page == 'Gallery' %>
+						<div class='main_link active'>
+					<% else %>
+						<div class='main_link'>
+					<% end %>
+						<li><%= link_to 'Solutions Gallery', problems_gallery_path %></li>
+					</div>
 				</ul>
-			</div>
-			<%= yield %>
-		</div>
+			</div> <!-- close nav div -->
+			<div class="main_content">
+				<%= yield %>
+			</div> <!-- close main_content div -->
+		</div> <!-- close container div -->
 	</body>
 </html>

@@ -1,15 +1,18 @@
 class ProblemsController < ApplicationController
 
-  def index
+  def solve
     @problems = Problem.all
+    @active_page = "Problems"
   end 
 
-  def index2
+  def gallery
   	@problems = Problem.all
+    @active_page = "Gallery"
   end
 
   def new
   	@problem = Problem.new
+    @active_page = "Problems"
   end
 
   def create

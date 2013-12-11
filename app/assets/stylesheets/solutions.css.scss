@@ -15,7 +15,7 @@ form#new_solution {
 	float: left;
 	cursor: crosshair;
 	background-color: white;
-	margin: 5px 10px 5px 10px;
+	margin: 5px 10px 5px -20px;
 }
 div.picker {
 	float: left;
@@ -89,4 +89,7 @@ div.picker {
 }
 img.solution {
 	border: 3px solid black;
+}
+#draw_this_problem {
+	margin: 40px 0px 0px 300px;
 }

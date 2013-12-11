@@ -1,6 +1,6 @@
 <h1>Solutions</h1>
-<h3><%= @problem.question %>:</h3>
-
+<h3 class="float_left"><%= @problem.question %>:</h3>
+<%= link_to 'Draw This Problem!', new_problem_solution_path(@problem), class: :button, id: "draw_this_problem", 'data-ajax' => false %>
 
 <ul>
 	<% @solutions.each do |solution| %>

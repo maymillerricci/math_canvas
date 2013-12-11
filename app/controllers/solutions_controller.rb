@@ -2,11 +2,13 @@ class SolutionsController < ApplicationController
   def index
   	 @problem = Problem.find(params[:problem_id])
   	 @solutions = @problem.solutions.all
+     @active_page = "Gallery"
   end
 
   def new
   	@problem = Problem.find(params[:problem_id])
   	@solution = @problem.solutions.new
+    @active_page = ""
   end
 
   def create

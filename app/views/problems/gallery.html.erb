@@ -6,7 +6,7 @@
 		<li>
 			<%= problem.id %>.
 			<span><%= problem.question %></span>
-			<%= link_to 'Solve!', new_problem_solution_path(problem), class: :button, id: 'solve', 'data-ajax' => false %>
+			<%= link_to 'View Gallery', problem_solutions_path(problem), class: :button %>
 		</li>
 		
 	<% end %> 
