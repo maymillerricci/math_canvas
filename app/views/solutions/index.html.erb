@@ -1,14 +1,13 @@
 <h1>Solutions</h1>
-<h3 class="float_left"><%= @problem.question %>:</h3>
+<h2 class="float_left"><%= @problem.question %>:</h2>
 <%= link_to 'Draw This Problem!', new_problem_solution_path(@problem), class: :button, id: "draw_this_problem", 'data-ajax' => false %>
 
-<ul>
+<ul id="solutions_list">
 	<% @solutions.each do |solution| %>
 			
 		<li>
-			<%= solution.id %>.
-			<span><%= solution.username %></span>
-			<%= solution.answer %>
+			<span>Name: <%= solution.username %></span>
+			Answer: <%= solution.answer %>
 		</li>
 			<%= image_tag solution.picture, class: :solution %>
 	<% end %> 

@@ -361,11 +361,10 @@
 
 
 	<%= simple_form_for [@problem, @solution], html: {multipart: true} do |f| %>
-
-		 <%= f.input :username %>
-		 <%= f.input :answer %>
+		 <%= f.input :username, label: 'Name:' %>
+		 <%= f.input :answer, label: 'Answer:' %>
 		 <%= f.input :picture, as: :hidden %>
-		 <%= f.button :submit, class: :button, id: :save %>
+		 <%= f.button :submit, 'Submit Solution', class: :button, id: :save %>
 	<% end %>
 
 </body>
