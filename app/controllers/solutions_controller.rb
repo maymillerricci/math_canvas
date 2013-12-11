@@ -13,7 +13,7 @@ class SolutionsController < ApplicationController
 
   def create
   	@problem = Problem.find(params[:problem_id]) #find a way to avoid querying database here?
-  	@solution = Solution.new(solution_params)
+    @solution = Solution.new(solution_params)
   	@solution.problem_id = params[:problem_id]
   	@solution.save
   	redirect_to problem_solutions_path(@problem)

@@ -278,10 +278,25 @@
 			}
 
 
-			//save canvas when click save button (confirm first)
-			$(document).on('click', '#save', function() {
-				if(confirm('Are you sure you want to save the canvas?')) {
-					saveCanvas();
+			//submit answer/canvas when click save button
+			$(document).on('click', '#save', function(e) {
+			//first, regular confirm to confirm user wants to submit
+				if(confirm('Are you sure you want to submit your solution?')) {
+					//next, check if answer is correct
+					//if answer is correct, dialog box saying so, and submit
+					//otherwise, confirmation question asking whether user wants to submit anyway
+					if (<%= @problem.answer %> == $('#solution_answer').val()) {			
+						alert("Your solution is correct!");
+						saveCanvas();
+					}	else {
+						if(confirm("Your solution is incorrect. Would you like to submit it anyway?")) {
+							saveCanvas();
+						} else {
+							e.preventDefault();
+						}
+					}
+				} else { 
+					e.preventDefault(); 
 				}
 			});
 
@@ -291,7 +306,6 @@
 				var url = canvas.toDataURL('image/png');
 				$("#solution_picture").val(url);
 			};
-
 
 		});
 	</script>
@@ -346,7 +360,7 @@
 	</form> -->
 
 
-	<%= simple_form_for [@problem, @solution], html: {multipart: true, :'data-ajax' => false} do |f| %>
+	<%= simple_form_for [@problem, @solution], html: {multipart: true} do |f| %>
 
 		 <%= f.input :username %>
 		 <%= f.input :answer %>
