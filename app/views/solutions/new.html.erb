@@ -298,7 +298,7 @@
 </head>
 <body>
 	<h1>Draw Solution</h1>
-	<h3><%= @problem.question %>:</h3>
+	<h3 id="drawing_problem"><%= @problem.question %>:</h3>
 
 	<!-- canvas -->
 	<canvas id="canvas"></canvas> 
@@ -309,8 +309,8 @@
 		<div class="choice choice_col" id="green"></div>
 		<div class="choice choice_col" id="yellow"></div>
 		<div class="choice choice_col" id="pink"></div>
-		<!-- <button id="clear">Clear</button> -->
 	</div>
+	<div id="clear_button"><button id="clear">Clear</button></div>
 	<!-- font weight picker -->
 	<div class="picker">
 		<div class="choice choice_wgt" id="small"><div class="line" id="line_small"></div></div>
