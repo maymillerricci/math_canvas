@@ -30,13 +30,13 @@
 
 
 div.nav {
-	/*background-color: rgb(55, 96, 76);*/
+	background-color: #33CCCC;
 	/*background-color: blue;*/
 	border-radius: 20px;
 	width: 960px;
 	height: 70px;
 	font-size: 80%;
-	border: 1px solid rgb(55, 96, 76);
+	border: 1px solid gray;
 	margin: 10px 0px;
 	/*padding: 20px 0px;*/
 
@@ -51,12 +51,14 @@ div.nav div.main_link {
 	padding-left: 20px;
 }
 div.container div.nav a.ui-link, div.nav h2 {
-	color: rgb(55, 96, 76);
+	color: #3333CC;
+	/*color: rgb(55, 96, 76);*/
 	text-shadow: none;
 
 }
 div.container div.nav a.ui-link {
 	padding: 30px 10px 0px;
+	margin-top: 100px;
 }
 img.logo_small {
 	width: 110px;
@@ -67,6 +69,7 @@ img.logo_small {
 div.nav h2 {
 	text-align: center;
 	font-size: 210%;
+	color: #6633CC;
 	margin: 0px 0px 0px -30px;
 }
 div.nav div.active.main_link {
@@ -74,7 +77,7 @@ div.nav div.active.main_link {
 	/*border: 4px solid rgb(55, 96, 76);*/
 }
 div.nav div.active a.ui-link {
-	color: slateblue;
+	color: #6633CC;
 }
 
 
