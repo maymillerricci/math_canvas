@@ -118,7 +118,7 @@
 
 			//redraw function
 			function redraw() {
-				context.clearRect(0, 0, canvasWidth, canvasHeight);
+				// context.clearRect(0, 0, canvasWidth, canvasHeight);
 				context.lineJoin = "round";
 				for(var i=0; i<clickX.length; i++) {
 					context.beginPath();
@@ -233,11 +233,28 @@
 			//draggable - make stamps draggable and when one is dragged replace with new one
 			$(document).on('vmousedown', '.new_stamp', function() {
 				$(this).removeClass('new_stamp');
+				$(this).addClass('to_remove');
 				var img_path = $(this).attr('src');
 				var stamp_id = $(this).parent().attr('id');
 				$('#' + stamp_id).append("<img class='draggable new_stamp' src='" + img_path + "'>");
-				$(".draggable").draggable();
+				//to make it so draggable image transfers to canvas
+				$('.draggable').draggable({
+				    stop: function() {
+				        var $canvas = $('#canvas');
+				        var ctx = $canvas.get(0).getContext('2d');
+				        var $img = $(this);
+				        var imgpos = $img.offset();
+				        var cpos = $canvas.offset();
+				        ctx.drawImage($img.get(0),imgpos.left-cpos.left, imgpos.top-cpos.top);								                     
+						remove_draggable();
+					}
+				});
 			});
+
+			//remove the draggable image once it's placed on the canvas
+			function remove_draggable() {
+				$('.to_remove').remove();
+			}
 			
 			//clear canvas when click clear button (confirm first)
 			$(document).on('click', '#clear', function() {
