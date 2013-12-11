@@ -10,7 +10,9 @@ li {
 	font-size: 120%;
 }
 li span {
-	padding: 0px 40px 0px 0px;
+	padding: 0px 25px 0px 0px;
+  float: left;
+  max-width: 500px;
 }
 div.container a.button.ui-link, div.container ul a.button.ui-link, input#save.btn.button.ui-btn-hidden {
   background-color: slateblue;
@@ -22,6 +24,8 @@ div.container a.button.ui-link, div.container ul a.button.ui-link, input#save.bt
   font-weight: normal;
   letter-spacing: 1.5px;
   text-shadow: none;
+  clear: both;
+  vertical-align: bottom;
 }
 
 table {
@@ -33,4 +37,9 @@ th, td {
   padding: 5px 10px;
   text-align: center
 }
+
+ul.problems li {
+  margin-left: -15px;
+}
+
 

@@ -1,5 +1,5 @@
 <h1>Solutions</h1>
-<h2 class="float_left"><%= @problem.question %>:</h2>
+<h2 class="float_left max_width"><%= @problem.question %></h2>
 <%= link_to 'Draw This Problem!', new_problem_solution_path(@problem), class: :button, id: "draw_this_problem", 'data-ajax' => false %>
 
 <ul id="solutions_list">
