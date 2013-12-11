@@ -7,7 +7,7 @@ class ProblemsController < ApplicationController
 
   def gallery
   	@problems = Problem.all
-    @active_page = "Gallery"
+    @active_page = "Solutions"
   end
 
   def new
