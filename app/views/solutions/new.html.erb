@@ -13,6 +13,8 @@
 		var colorBlue = '#3333CC';
 		var colorGreen = '#336633';
 		var colorYellow = '#FFFF33';
+		var colorOrange = '#FF7519';
+		var colorRed = '#FF1919';
 		var colorPink = '#CC0099';
 		var clickColor = new Array();
 		var curColor = null;
@@ -29,7 +31,7 @@
 				curColor = colorPurple;
 				curSize = 10;
 				curTool = 'marker';
-				curAlpha = 1;
+				// curAlpha = 1;
 
 				//remove and set borders on default options on page load or clear
 				$('.choice').removeClass('highlight');
@@ -168,6 +170,14 @@
 				curColor = colorYellow;
 				highlight($(this));
 			});
+			$(document).on('vclick', '#orange', function() {
+				curColor = colorOrange;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#red', function() {
+				curColor = colorRed;
+				highlight($(this));
+			});
 			$(document).on('vclick', '#pink', function() {
 				curColor = colorPink;
 				highlight($(this));
@@ -200,14 +210,14 @@
 				}
 				highlight($(this));
 			});
-			$(document).on('vclick', '#crayon', function() {
-				curTool = 'crayon';
-				curAlpha = 0.4;
-				if(curColor == 'white') {
-					curColor = colorPurple;
-				}
-				highlight($(this));
-			});
+			// $(document).on('vclick', '#crayon', function() {
+			// 	curTool = 'crayon';
+			// 	curAlpha = 0.4;
+			// 	if(curColor == 'white') {
+			// 		curColor = colorPurple;
+			// 	}
+			// 	highlight($(this));
+			// });
 			$(document).on('vclick', '#eraser', function() {
 				curTool = 'eraser';
 				curAlpha = 1;
@@ -272,7 +282,7 @@
 				clickDrag.length = 0;
 				clickColor.length = 0;
 				clickSize.length = 0;
-				clickAlpha.length = 0;
+				// clickAlpha.length = 0;
 				$('.draggable').remove();
 				initialize();
 			}
@@ -322,6 +332,22 @@
 		<div class="choice choice_col" id="blue"></div>
 		<div class="choice choice_col" id="green"></div>
 		<div class="choice choice_col" id="yellow"></div>
+		<div class="choice choice_col" id="orange"></div>
+		<div class="choice choice_col" id="red"></div>
+		<div class="choice choice_col" id="pink"></div>
+	</div>
+	<div class="picker">
+		<div class="choice choice_col" id="purple"></div>
+		<div class="choice choice_col" id="blue"></div>
+		<div class="choice choice_col" id="green"></div>
+		<div class="choice choice_col" id="yellow"></div>
+		<div class="choice choice_col" id="pink"></div>
+	</div>
+	<div class="picker">
+		<div class="choice choice_col" id="purple"></div>
+		<div class="choice choice_col" id="blue"></div>
+		<div class="choice choice_col" id="green"></div>
+		<div class="choice choice_col" id="yellow"></div>
 		<div class="choice choice_col" id="pink"></div>
 	</div>
 	<div id="clear_button"><button id="clear">Clear</button></div>
@@ -334,8 +360,8 @@
 	</div>
 	<!-- tool picker -->
 	<div class="picker">
-		<div class="choice choice_tol" id="marker"><%= image_tag "marker.png" %></div>
-		<div class="choice choice_tol" id="crayon"><%= image_tag "crayon.png" %></div>
+		<div class="choice choice_tol" id="marker"><%= image_tag "crayon.png" %></div>
+		<!-- <div class="choice choice_tol" id="crayon"><%#= image_tag "crayon.png" %></div> -->
 		<div class="choice choice_tol" id="eraser"><%= image_tag "eraser.png" %></div>
 	</div>
 	<!-- stamps -->

@@ -12,10 +12,11 @@ form#new_solution {
 }
 #canvas {
 	border: 3px solid black;
+	width: 660px;
 	float: left;
 	cursor: crosshair;
 	background-color: white;
-	margin: 5px 0px 5px -20px;
+	margin: 5px 0px 5px 0px;
 }
 div.picker {
 	float: left;
@@ -41,7 +42,6 @@ div.picker {
 	margin: 10px;
 }
 #drag_picker {
-	margin-left: -30px;
 	clear: both;
 }
 .highlight {
@@ -60,6 +60,12 @@ div.picker {
 #yellow {
 	background-color: #FFFF33;
 }
+#orange {
+	background-color: #FF7519;
+}
+#red {
+	background-color: #FF1919;
+}
 #pink {
 	background-color: #CC0099;
 }
@@ -70,7 +76,8 @@ div#clear_button {
 	width: 100px;
 	height: 40px;
 	float: right;
-	margin-top: -70px;
+	margin-top: -60px;
+	margin-right: 30px;
 }
 #clear {
 	font-size: 1em;
