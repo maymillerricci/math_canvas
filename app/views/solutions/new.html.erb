@@ -3,7 +3,7 @@
 	<script>
 
 		//set all variables
-		var canvasWidth = 600;
+		var canvasWidth = 660;
 		var canvasHeight = 400;
 		var clickX = new Array();
 		var clickY = new Array();
@@ -16,14 +16,28 @@
 		var colorOrange = '#FF7519';
 		var colorRed = '#FF1919';
 		var colorPink = '#CC0099';
+		var colorLightPurple = '#CC99FF';
+		var colorDarkPurple = '#6633CC';
+		var colorMediumBlue = '#3366CC';
+		var colorSeaGreen = '#33CCCC';
+		var colorLightGreen = '#99FF00';
+		var colorLightYellow = '#FFFF99';
+		var colorSalmon = '#FF6666';
+		var colorBlack = '#000000';
+		var colorBrown = '#5C2E00';
+		var colorDarkGray = '#666666';
+		var colorLightGray = '#CCCCCC';
+		var colorLightBlue = '#99CCFF';
+		var colorTeal = '#3E7475';
+		var colorLightPink = '#FF99CC';
 		var clickColor = new Array();
 		var curColor = null;
 		var clickSize = new Array();
 		var curSize = null;
 		var clickTool = new Array();
 		var curTool = null;
-		var clickAlpha = new Array();
-		var curAlpha = null;
+		// var clickAlpha = new Array();
+		// var curAlpha = null;
 
 		$(document).ready(function() {
 
@@ -115,7 +129,7 @@
 				clickColor.push(curColor);
 				clickSize.push(curSize);
 				// clickTool.push(curTool);
-				clickAlpha.push(curAlpha);
+				// clickAlpha.push(curAlpha);
 			}
 
 			//redraw function
@@ -133,7 +147,7 @@
 					context.closePath();
 					context.strokeStyle = clickColor[i];
 					context.lineWidth = clickSize[i];
-					context.globalAlpha = clickAlpha[i];
+					// context.globalAlpha = clickAlpha[i];
 					context.stroke();
 				}
 			}
@@ -182,6 +196,62 @@
 				curColor = colorPink;
 				highlight($(this));
 			});
+			$(document).on('vclick', '#lightpurple', function() {
+				curColor = colorLightPurple;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#darkpurple', function() {
+				curColor = colorDarkPurple;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#mediumblue', function() {
+				curColor = colorMediumBlue;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#seagreen', function() {
+				curColor = colorSeaGreen;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightgreen', function() {
+				curColor = colorLightGreen;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightyellow', function() {
+				curColor = colorLightYellow;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#salmon', function() {
+				curColor = colorSalmon;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#black', function() {
+				curColor = colorBlack;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#brown', function() {
+				curColor = colorBrown;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#darkgray', function() {
+				curColor = colorDarkGray;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightgray', function() {
+				curColor = colorLightGray;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightblue', function() {
+				curColor = colorLightBlue;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#teal', function() {
+				curColor = colorTeal;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightpink', function() {
+				curColor = colorLightPink;
+				highlight($(this));
+			});
 
 			//change current font weight when click on options in font weight picker
 			$(document).on('vclick', '#small', function() {
@@ -200,16 +270,21 @@
 				curSize = 23;
 				highlight($(this));
 			});
+			$(document).on('vclick', '#gigantic', function() {
+				curSize = 35;
+				highlight($(this));
+			});
 
 			//change current tool when click on options in tool picker
 			$(document).on('vclick', '#marker', function() {
 				curTool = 'marker';
-				curAlpha = 1;
+				// curAlpha = 1;
 				if(curColor == 'white') {
 					curColor = colorPurple;
 				}
 				highlight($(this));
 			});
+			//disable crayon function with global alpha - causing problems
 			// $(document).on('vclick', '#crayon', function() {
 			// 	curTool = 'crayon';
 			// 	curAlpha = 0.4;
@@ -220,7 +295,7 @@
 			// });
 			$(document).on('vclick', '#eraser', function() {
 				curTool = 'eraser';
-				curAlpha = 1;
+				// curAlpha = 1;
 				highlight($(this));
 				$('.choice_col').removeClass('highlight');
 			});
@@ -287,7 +362,6 @@
 				initialize();
 			}
 
-
 			//submit answer/canvas when click save button
 			$(document).on('click', '#save', function(e) {
 			//first, regular confirm to confirm user wants to submit
@@ -337,18 +411,22 @@
 		<div class="choice choice_col" id="pink"></div>
 	</div>
 	<div class="picker">
-		<div class="choice choice_col" id="purple"></div>
-		<div class="choice choice_col" id="blue"></div>
-		<div class="choice choice_col" id="green"></div>
-		<div class="choice choice_col" id="yellow"></div>
-		<div class="choice choice_col" id="pink"></div>
+		<div class="choice choice_col" id="lightpurple"></div>
+		<div class="choice choice_col" id="darkpurple"></div>
+		<div class="choice choice_col" id="mediumblue"></div>
+		<div class="choice choice_col" id="seagreen"></div>
+		<div class="choice choice_col" id="lightgreen"></div>
+		<div class="choice choice_col" id="lightyellow"></div>
+		<div class="choice choice_col" id="salmon"></div>
 	</div>
 	<div class="picker">
-		<div class="choice choice_col" id="purple"></div>
-		<div class="choice choice_col" id="blue"></div>
-		<div class="choice choice_col" id="green"></div>
-		<div class="choice choice_col" id="yellow"></div>
-		<div class="choice choice_col" id="pink"></div>
+		<div class="choice choice_col" id="black"></div>
+		<div class="choice choice_col" id="brown"></div>
+		<div class="choice choice_col" id="darkgray"></div>
+		<div class="choice choice_col" id="lightgray"></div>
+		<div class="choice choice_col" id="lightblue"></div>
+		<div class="choice choice_col" id="teal"></div>
+		<div class="choice choice_col" id="lightpink"></div>
 	</div>
 	<div id="clear_button"><button id="clear">Clear</button></div>
 	<!-- font weight picker -->
@@ -357,6 +435,7 @@
 		<div class="choice choice_wgt" id="normal"><div class="line" id="line_normal"></div></div>
 		<div class="choice choice_wgt" id="large"><div class="line" id="line_large"></div></div>
 		<div class="choice choice_wgt" id="huge"><div class="line" id="line_huge"></div></div>
+		<div class="choice choice_wgt" id="gigantic"><div class="line" id="line_gigantic"></div></div>
 	</div>
 	<!-- tool picker -->
 	<div class="picker">

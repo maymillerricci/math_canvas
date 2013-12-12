@@ -12,7 +12,6 @@ form#new_solution {
 }
 #canvas {
 	border: 3px solid black;
-	width: 660px;
 	float: left;
 	cursor: crosshair;
 	background-color: white;
@@ -69,8 +68,47 @@ div.picker {
 #pink {
 	background-color: #CC0099;
 }
-h3#drawing_problem {
-
+#lightpurple {
+	background-color: #CC99FF;
+}
+#darkpurple {
+	background-color: #6633CC;
+}
+#mediumblue {
+	background-color: #3366CC;
+}
+#seagreen {
+	background-color: #33CCCC;
+}
+#lightgreen {
+	background-color: #99FF00;
+}
+#lightyellow {
+	background-color: #FFFF99;
+}
+#salmon {
+	background-color: #FF6666;
+}
+#black {
+	background-color: #000000;
+}
+#brown {
+	background-color: #5C2E00;
+}
+#darkgray {
+	background-color: #666666;
+}
+#lightgray {
+	background-color: #CCCCCC;
+}
+#lightblue {
+	background-color: #99CCFF;
+}
+#teal {
+	background-color: #3E7475;
+}
+#lightpink {
+	background-color: #FF99CC;
 }
 div#clear_button {
 	width: 100px;
@@ -85,21 +123,23 @@ div#clear_button {
 }
 .line {
 	height: 40px;
-	/*background-color: #660099;*/
 	background-color: gray;
 	margin: 0 auto;
 }
 #line_small {
-	width: 5px;
+	width: 4px;
 }
 #line_normal {
-	width: 10px;
+	width: 9px;
 }
 #line_large {
-	width: 15px;
+	width: 14px;
 }
 #line_huge {
-	width: 20px;
+	width: 19px;
+}
+#line_gigantic {
+	width: 25px;
 }
 img.solution {
 	border: 3px solid black;
