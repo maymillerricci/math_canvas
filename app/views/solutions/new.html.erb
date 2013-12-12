@@ -10,11 +10,11 @@
 		var clickDrag = new Array();
 		var paint;
 		var colorPurple = '#660099';
-		var colorBlue = '#3333CC';
+		var colorBlue = '#00008A';
 		var colorGreen = '#336633';
 		var colorYellow = '#FFFF33';
 		var colorOrange = '#FF7519';
-		var colorRed = '#FF1919';
+		var colorRed = '#CC0000';
 		var colorPink = '#CC0099';
 		var colorLightPurple = '#CC99FF';
 		var colorDarkPurple = '#6633CC';
@@ -365,7 +365,7 @@
 			//submit answer/canvas when click save button
 			$(document).on('click', '#save', function(e) {
 			//first, regular confirm to confirm user wants to submit
-				if(confirm('Are you sure you want to submit your solution?')) {
+				if(confirm('Are you sure you want to submit your drawing?')) {
 					//next, check if answer is correct
 					//if answer is correct, dialog box saying so, and submit
 					//otherwise, confirmation question asking whether user wants to submit anyway
@@ -395,14 +395,14 @@
 	</script>
 </head>
 <body>
-	<h1>Draw Solution</h1>
+	<h1>Draw Solution!</h1>
 	<h3 id="drawing_problem"><%= @problem.question %></h3>
 
 	<!-- canvas -->
 	<canvas id="canvas"></canvas> 
 	<!-- color picker -->
 	<div class="picker">
-		<div class="choice choice_col" id="purple"></div>
+		<div class="choice choice_col top_choice" id="purple"></div>
 		<div class="choice choice_col" id="blue"></div>
 		<div class="choice choice_col" id="green"></div>
 		<div class="choice choice_col" id="yellow"></div>
@@ -411,7 +411,7 @@
 		<div class="choice choice_col" id="pink"></div>
 	</div>
 	<div class="picker">
-		<div class="choice choice_col" id="lightpurple"></div>
+		<div class="choice choice_col top_choice" id="lightpurple"></div>
 		<div class="choice choice_col" id="darkpurple"></div>
 		<div class="choice choice_col" id="mediumblue"></div>
 		<div class="choice choice_col" id="seagreen"></div>
@@ -420,7 +420,7 @@
 		<div class="choice choice_col" id="salmon"></div>
 	</div>
 	<div class="picker">
-		<div class="choice choice_col" id="black"></div>
+		<div class="choice choice_col top_choice" id="black"></div>
 		<div class="choice choice_col" id="brown"></div>
 		<div class="choice choice_col" id="darkgray"></div>
 		<div class="choice choice_col" id="lightgray"></div>
@@ -431,7 +431,7 @@
 	<div id="clear_button"><button id="clear">Clear</button></div>
 	<!-- font weight picker -->
 	<div class="picker">
-		<div class="choice choice_wgt" id="small"><div class="line" id="line_small"></div></div>
+		<div class="choice choice_wgt top_choice" id="small"><div class="line" id="line_small"></div></div>
 		<div class="choice choice_wgt" id="normal"><div class="line" id="line_normal"></div></div>
 		<div class="choice choice_wgt" id="large"><div class="line" id="line_large"></div></div>
 		<div class="choice choice_wgt" id="huge"><div class="line" id="line_huge"></div></div>
@@ -439,7 +439,7 @@
 	</div>
 	<!-- tool picker -->
 	<div class="picker">
-		<div class="choice choice_tol" id="marker"><%= image_tag "crayon.png" %></div>
+		<div class="choice choice_tol top_choice" id="marker"><%= image_tag "crayon.png" %></div>
 		<!-- <div class="choice choice_tol" id="crayon"><%#= image_tag "crayon.png" %></div> -->
 		<div class="choice choice_tol" id="eraser"><%= image_tag "eraser.png" %></div>
 	</div>
@@ -469,7 +469,7 @@
 		 <%= f.input :username, label: 'Name:' %>
 		 <%= f.input :answer, label: 'Answer:' %>
 		 <%= f.input :picture, as: :hidden %>
-		 <%= f.button :submit, 'Submit Solution', class: :button, id: :save %>
+		 <%= f.button :submit, 'Submit Drawing', class: :button, id: :save %>
 	<% end %>
 
 </body>

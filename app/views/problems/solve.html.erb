@@ -1,4 +1,4 @@
-<h1>Problems to Solve</h1>
+<h1>Problems to Draw</h1>
 
 <ul class="problems">
 	<% @problems.each do |problem| %>
@@ -6,7 +6,7 @@
 		<div class="row">
 			<li>
 				<span><%= problem.question %></span>
-				<%= link_to 'Solve!', new_problem_solution_path(problem), class: :button, 'data-ajax' => false %>
+				<%= link_to 'Draw!', new_problem_solution_path(problem), class: :button, 'data-ajax' => false %>
 			</li>
 		</div>
 		

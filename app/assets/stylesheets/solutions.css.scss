@@ -15,7 +15,7 @@ form#new_solution {
 	float: left;
 	cursor: crosshair;
 	background-color: white;
-	margin: 5px 0px 5px 0px;
+	margin: 5px 5px 5px 0px;
 }
 div.picker {
 	float: left;
@@ -40,18 +40,27 @@ div.picker {
 	display: inline-block;
 	margin: 10px;
 }
+div#marker.highlight img, div#eraser.highlight img {
+	width: 36px;
+	height: 36px;
+}
 #drag_picker {
 	clear: both;
 }
 .highlight {
-	margin: 7px 0px 0px 2px;
+	margin: 4px 2px 7px 5px;
 	border: 4px solid black;
+	width: 34px;
+	height: 34px;
+}
+.top_choice.highlight {
+	margin: 10px 2px 7px 5px;
 }
 #purple {
 	background-color: #660099;
 }
 #blue {
-	background-color: #3333CC;
+	background-color: #00008A;
 }
 #green {
 	background-color: #336633;
@@ -63,7 +72,7 @@ div.picker {
 	background-color: #FF7519;
 }
 #red {
-	background-color: #FF1919;
+	background-color: #CC0000;
 }
 #pink {
 	background-color: #CC0099;
@@ -125,6 +134,9 @@ div#clear_button {
 	height: 40px;
 	background-color: gray;
 	margin: 0 auto;
+}
+.highlight .line {
+	height: 34px;
 }
 #line_small {
 	width: 4px;
