@@ -14,7 +14,17 @@
 			<div class="nav">
 				<ul>
 					<li class="float_left"><h2 class="nav_title">Math Canvas</h2></li>
+					
 					<li class="float_left"><%= image_tag "mathcanvaslogo.png", class: :logo_small %></li>
+					
+					<% if @active_page == 'Free_Draw' %>
+						<div class='main_link active'>
+					<% else %>
+						<div class='main_link'>
+					<% end %>
+						<li class="float_right"><%= link_to 'Free Draw', new_free_draw_path %></li>
+					</div>
+
 					<% if @active_page == 'Solutions' %>
 						<div class='main_link active'>
 					<% else %>

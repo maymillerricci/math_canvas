@@ -1,12 +1,14 @@
 class ProblemsController < ApplicationController
 
   def solve
-    @problems = Problem.all
+    # @problems = Problem.all
+    @problems = Problem.where.not(id: 12)
     @active_page = "Problems"
   end 
 
   def gallery
-  	@problems = Problem.all
+    # @problems = Problem.all
+  	@problems = Problem.where.not(id: 12)
     @active_page = "Solutions"
   end
 

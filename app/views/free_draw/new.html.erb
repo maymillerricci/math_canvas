@@ -1,0 +1,495 @@
+<head>
+
+	<script>
+
+		//set all variables
+		var canvasWidth = 660;
+		var canvasHeight = 400;
+		var clickX = new Array();
+		var clickY = new Array();
+		var clickDrag = new Array();
+		var paint;
+		var colorPurple = '#660099';
+		var colorBlue = '#00008A';
+		var colorGreen = '#336633';
+		var colorYellow = '#FFFF33';
+		var colorOrange = '#FF7519';
+		var colorRed = '#CC0000';
+		var colorPink = '#CC0099';
+		var colorLightPurple = '#CC99FF';
+		var colorDarkPurple = '#6633CC';
+		var colorMediumBlue = '#3366CC';
+		var colorSeaGreen = '#33CCCC';
+		var colorLightGreen = '#99FF00';
+		var colorLightYellow = '#FFFF99';
+		var colorSalmon = '#FF6666';
+		var colorBlack = '#000000';
+		var colorBrown = '#5C2E00';
+		var colorDarkGray = '#666666';
+		var colorLightGray = '#CCCCCC';
+		var colorLightBlue = '#99CCFF';
+		var colorTeal = '#3E7475';
+		var colorLightPink = '#FF99CC';
+		var clickColor = new Array();
+		var curColor = null;
+		var clickSize = new Array();
+		var curSize = null;
+		var clickTool = new Array();
+		var curTool = null;
+		// var clickAlpha = new Array();
+		// var curAlpha = null;
+
+		$(document).ready(function() {
+
+			function initialize() {
+				curColor = colorPurple;
+				curSize = 10;
+				curTool = 'marker';
+				// curAlpha = 1;
+
+				//remove and set borders on default options on page load or clear
+				$('.choice').removeClass('highlight');
+				$('#purple, #normal, #marker').addClass('highlight');
+
+				//load images in stamp picker
+				$('#img1').append('<%= image_tag "butterfly.png", class: "draggable new_stamp" %>');
+				$('#img2').append('<%= image_tag "apple.png", class: "draggable new_stamp" %>');
+				$('#img3').append('<%= image_tag "goldfish.png", class: "draggable new_stamp" %>');
+				$('#img4').append('<%= image_tag "sun.png", class: "draggable new_stamp" %>');
+				$('#img5').append('<%= image_tag "tree.png", class: "draggable new_stamp" %>');
+				$('#img6').append('<%= image_tag "earth.png", class: "draggable new_stamp" %>');
+				$('#img7').append('<%= image_tag "octopus.png", class: "draggable new_stamp" %>');
+				$('#img8').append('<%= image_tag "teddybear.png", class: "draggable new_stamp" %>');
+				$('#img9').append('<%= image_tag "ninja.png", class: "draggable new_stamp" %>');
+				$('#img10').append('<%= image_tag "whale.png", class: "draggable new_stamp" %>');
+				$(".draggable").draggable();
+			}
+
+			//set 2d context
+			context = document.getElementById('canvas').getContext('2d');
+
+			//set height and width of canvas
+			$('#canvas').attr({
+				width: canvasWidth,
+				height: canvasHeight
+			});
+
+			initialize();
+
+			//drawing - on mousedown
+			$(document).on('vmousedown', '#canvas', function(e) {
+				e.preventDefault();
+				var mouseX = e.pageX - this.offsetLeft;
+				var mouseY = e.pageY - this.offsetTop;
+				paint = true;
+				addClick(mouseX, mouseY);
+				redraw();
+			});
+				
+			//drawing - on mousemove
+			$(document).on('vmousemove', '#canvas', function(e) {
+				e.preventDefault();
+				if(paint) {
+					var mouseX = e.pageX - this.offsetLeft;
+					var mouseY = e.pageY - this.offsetTop;
+					addClick(mouseX, mouseY, true);
+					redraw();
+				}
+			});
+
+			//drawing - on mouseup
+			$(document).on('vmouseup', '#canvas', function(e) {
+				e.preventDefault();
+				paint = false;
+			});
+
+			//drawing - on mouse leaving the canvas
+			$(document).on('mouseleave', '#canvas', function(e) {
+				paint = false;
+			});
+
+			$(document).on('vclick', '#canvas', function(e) {
+				e.preventDefault();
+			});
+
+			//drawing - on mouse re-entering the canvas - WORK ON THIS!!!?
+			// $(document).on('mouseenter', '#canvas', function(e) {
+			// 	paint = true;
+			// });
+
+			//add click function
+			function addClick(x, y, dragging)
+			{
+				if(curTool == "eraser") {
+					curColor = "white";
+				}	
+				clickX.push(x);
+				clickY.push(y);
+				clickDrag.push(dragging);
+				clickColor.push(curColor);
+				clickSize.push(curSize);
+				// clickTool.push(curTool);
+				// clickAlpha.push(curAlpha);
+			}
+
+			//redraw function
+			function redraw() {
+				// context.clearRect(0, 0, canvasWidth, canvasHeight);
+				context.lineJoin = "round";
+				for(var i=0; i<clickX.length; i++) {
+					context.beginPath();
+					if(clickDrag[i] && i) {
+						context.moveTo(clickX[i-1], clickY[i-1]);
+					} else {
+						context.moveTo(clickX[i]-1, clickY[i]);
+					}
+					context.lineTo(clickX[i], clickY[i]);
+					context.closePath();
+					context.strokeStyle = clickColor[i];
+					context.lineWidth = clickSize[i];
+					// context.globalAlpha = clickAlpha[i];
+					context.stroke();
+				}
+			}
+
+			//add highlight class for border
+			function highlight(choice) {
+				var choice_class = choice.attr('class').substr(7,10);
+				$('.' + choice_class).removeClass('highlight');
+				$(choice).addClass('highlight');
+			}
+
+			$(document).on('vclick', '.choice_col', function() {
+				if(curTool == 'eraser') {
+					curTool = 'marker';
+					$('#eraser').removeClass('highlight');
+					$('#marker').addClass('highlight');
+				}
+			});
+
+			//change current color when click on colors in color picker
+			$(document).on('vclick', '#purple', function() {
+				curColor = colorPurple;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#blue', function() {
+				curColor = colorBlue;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#green', function() {
+				curColor = colorGreen;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#yellow', function() {
+				curColor = colorYellow;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#orange', function() {
+				curColor = colorOrange;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#red', function() {
+				curColor = colorRed;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#pink', function() {
+				curColor = colorPink;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightpurple', function() {
+				curColor = colorLightPurple;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#darkpurple', function() {
+				curColor = colorDarkPurple;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#mediumblue', function() {
+				curColor = colorMediumBlue;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#seagreen', function() {
+				curColor = colorSeaGreen;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightgreen', function() {
+				curColor = colorLightGreen;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightyellow', function() {
+				curColor = colorLightYellow;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#salmon', function() {
+				curColor = colorSalmon;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#black', function() {
+				curColor = colorBlack;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#brown', function() {
+				curColor = colorBrown;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#darkgray', function() {
+				curColor = colorDarkGray;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightgray', function() {
+				curColor = colorLightGray;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightblue', function() {
+				curColor = colorLightBlue;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#teal', function() {
+				curColor = colorTeal;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#lightpink', function() {
+				curColor = colorLightPink;
+				highlight($(this));
+			});
+
+			//change current font weight when click on options in font weight picker
+			$(document).on('vclick', '#small', function() {
+				curSize = 4;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#normal', function() {
+				curSize = 10;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#large', function() {
+				curSize = 17;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#huge', function() {
+				curSize = 23;
+				highlight($(this));
+			});
+			$(document).on('vclick', '#gigantic', function() {
+				curSize = 35;
+				highlight($(this));
+			});
+
+			//change current tool when click on options in tool picker
+			$(document).on('vclick', '#marker', function() {
+				curTool = 'marker';
+				// curAlpha = 1;
+				if(curColor == 'white') {
+					curColor = colorPurple;
+				}
+				highlight($(this));
+			});
+			//disable crayon function with global alpha - causing problems
+			// $(document).on('vclick', '#crayon', function() {
+			// 	curTool = 'crayon';
+			// 	curAlpha = 0.4;
+			// 	if(curColor == 'white') {
+			// 		curColor = colorPurple;
+			// 	}
+			// 	highlight($(this));
+			// });
+			$(document).on('vclick', '#eraser', function() {
+				curTool = 'eraser';
+				// curAlpha = 1;
+				highlight($(this));
+				$('.choice_col').removeClass('highlight');
+				$('.line').css('background-color', 'white');
+			});
+
+			//change color of font weight options depending on current color
+			$(document).on('vclick', '.choice_col', function() {
+				if(curColor==colorPurple) {
+					$('.line').css('background-color', colorPurple);
+				} else if(curColor==colorBlue) {
+					$('.line').css('background-color', colorBlue);
+				} else if(curColor==colorGreen) {
+					$('.line').css('background-color', colorGreen);
+				} else if(curColor==colorYellow) {
+					$('.line').css('background-color', colorYellow);
+				} else if(curColor==colorOrange) {
+					$('.line').css('background-color', colorOrange);
+				} else if(curColor==colorRed) {
+					$('.line').css('background-color', colorRed);
+				} else if(curColor==colorPink) {
+					$('.line').css('background-color', colorPink);
+				} else if(curColor==colorLightPurple) {
+					$('.line').css('background-color', colorLightPurple);
+				} else if(curColor==colorDarkPurple) {
+					$('.line').css('background-color', colorDarkPurple);
+				} else if(curColor==colorMediumBlue) {
+					$('.line').css('background-color', colorMediumBlue);
+				} else if(curColor==colorSeaGreen) {
+					$('.line').css('background-color', colorSeaGreen);
+				} else if(curColor==colorLightGreen) {
+					$('.line').css('background-color', colorLightGreen);
+				} else if(curColor==colorLightYellow) {
+					$('.line').css('background-color', colorLightYellow);
+				} else if(curColor==colorSalmon) {
+					$('.line').css('background-color', colorSalmon);
+				} else if(curColor==colorBlack) {
+					$('.line').css('background-color', colorBlack);
+				} else if(curColor==colorBrown) {
+					$('.line').css('background-color', colorBrown);
+				} else if(curColor==colorDarkGray) {
+					$('.line').css('background-color', colorDarkGray);
+				} else if(curColor==colorLightGray) {
+					$('.line').css('background-color', colorLightGray);
+				} else if(curColor==colorLightBlue) {
+					$('.line').css('background-color', colorLightBlue);
+				} else if(curColor==colorTeal) {
+					$('.line').css('background-color', colorTeal);
+				} else if(curColor==colorLightPink) {
+					$('.line').css('background-color', colorLightPink);
+				} 
+			});
+
+			//draggable - make stamps draggable and when one is dragged replace with new one
+			$(document).on('vmousedown', '.new_stamp', function() {
+				$(this).removeClass('new_stamp');
+				$(this).addClass('to_remove');
+				var img_path = $(this).attr('src');
+				var stamp_id = $(this).parent().attr('id');
+				$('#' + stamp_id).append("<img class='draggable new_stamp' src='" + img_path + "'>");
+				//to make it so draggable image transfers to canvas
+				$('.draggable').draggable({
+				    stop: function() {
+				        var $canvas = $('#canvas');
+				        var ctx = $canvas.get(0).getContext('2d');
+				        var $img = $(this);
+				        var imgpos = $img.offset();
+				        var cpos = $canvas.offset();
+				        ctx.drawImage($img.get(0),imgpos.left-cpos.left, imgpos.top-cpos.top);								                     
+						remove_draggable();
+					}
+				});
+			});
+
+			//remove the draggable image once it's placed on the canvas
+			function remove_draggable() {
+				$('.to_remove').remove();
+			}
+			
+			//clear canvas when click clear button (confirm first)
+			$(document).on('click', '#clear', function() {
+				if(confirm('Are you sure you want to clear the canvas?')) {
+					clearCanvas();
+				}
+			});
+
+			//clear canvas function - clears canvas and resets all arrays
+			function clearCanvas()
+			{
+				context.clearRect(0, 0, canvasWidth, canvasHeight);
+				clickX.length = 0;
+				clickY.length = 0;
+				clickDrag.length = 0;
+				clickColor.length = 0;
+				clickSize.length = 0;
+				// clickAlpha.length = 0;
+				$('.draggable').remove();
+				initialize();
+			}
+
+			//submit answer/canvas when click save button
+			$(document).on('click', '#save', function(e) {
+			//confirm user wants to submit
+				if(confirm('Are you sure you want to submit your drawing?')) {
+					saveCanvas();
+				} else { 
+					e.preventDefault(); 
+				}
+			});
+
+			//save canvas function
+			function saveCanvas()
+			{
+				var url = canvas.toDataURL('image/png');
+				$("#solution_picture").val(url);
+			};
+
+		});
+	</script>
+</head>
+<body>
+	<h1>Free Draw!</h1>
+	<%= link_to 'View Gallery', free_draw_index_path, class: :button, id: "free_draw_gallery", 'data-ajax' => false %>
+	<!-- canvas -->
+	<canvas id="canvas"></canvas> 
+	<!-- color picker -->
+	<div class="picker">
+		<div class="choice choice_col top_choice" id="purple"></div>
+		<div class="choice choice_col" id="blue"></div>
+		<div class="choice choice_col" id="green"></div>
+		<div class="choice choice_col" id="yellow"></div>
+		<div class="choice choice_col" id="orange"></div>
+		<div class="choice choice_col" id="red"></div>
+		<div class="choice choice_col" id="pink"></div>
+	</div>
+	<div class="picker">
+		<div class="choice choice_col top_choice" id="lightpurple"></div>
+		<div class="choice choice_col" id="darkpurple"></div>
+		<div class="choice choice_col" id="mediumblue"></div>
+		<div class="choice choice_col" id="seagreen"></div>
+		<div class="choice choice_col" id="lightgreen"></div>
+		<div class="choice choice_col" id="lightyellow"></div>
+		<div class="choice choice_col" id="salmon"></div>
+	</div>
+	<div class="picker">
+		<div class="choice choice_col top_choice" id="black"></div>
+		<div class="choice choice_col" id="brown"></div>
+		<div class="choice choice_col" id="darkgray"></div>
+		<div class="choice choice_col" id="lightgray"></div>
+		<div class="choice choice_col" id="lightblue"></div>
+		<div class="choice choice_col" id="teal"></div>
+		<div class="choice choice_col" id="lightpink"></div>
+	</div>
+	<div id="clear_button"><button id="clear">Clear</button></div>
+	<!-- font weight picker -->
+	<div class="picker">
+		<div class="choice choice_wgt top_choice" id="small"><div class="line" id="line_small"></div></div>
+		<div class="choice choice_wgt" id="normal"><div class="line" id="line_normal"></div></div>
+		<div class="choice choice_wgt" id="large"><div class="line" id="line_large"></div></div>
+		<div class="choice choice_wgt" id="huge"><div class="line" id="line_huge"></div></div>
+		<div class="choice choice_wgt" id="gigantic"><div class="line" id="line_gigantic"></div></div>
+	</div>
+	<!-- tool picker -->
+	<div class="picker">
+		<div class="choice choice_tol top_choice" id="marker"><%= image_tag "crayon.png" %></div>
+		<!-- <div class="choice choice_tol" id="crayon"><%#= image_tag "crayon.png" %></div> -->
+		<div class="choice choice_tol" id="eraser"><%= image_tag "eraser.png" %></div>
+	</div>
+	<!-- stamps -->
+	<div id="drag_picker">
+		<div class="img" id="img1"></div>
+		<div class="img" id="img2"></div>
+		<div class="img" id="img3"></div>
+		<div class="img" id="img4"></div>
+		<div class="img" id="img5"></div>
+		<div class="img" id="img6"></div>
+		<div class="img" id="img7"></div>
+		<div class="img" id="img8"></div>
+		<div class="img" id="img9"></div>
+		<div class="img" id="img10"></div>
+	</div>
+	<!-- <form action="<%= problem_solutions_path(@problem) %>" method="post">
+		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+		Username: <input type="text" name="solution[username]">
+		Answer: <input type="text" name="solution[answer]">
+		Image Test: <input type="text" name="solution[picture]" id="canvascontent">
+		<input type="submit" value="Submit">
+	</form> -->
+
+
+	<%= simple_form_for [@problem, @solution], html: {multipart: true} do |f| %>
+		 <%= f.input :username, label: 'Name:' %>
+		 <%= f.input :picture, as: :hidden %>
+		 <%= f.button :submit, 'Submit Drawing', class: :button, id: :save %>
+	<% end %>
+
+</body>
+

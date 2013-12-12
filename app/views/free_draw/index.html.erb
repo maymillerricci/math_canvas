@@ -1,0 +1,13 @@
+<h1>Free Draw Gallery</h1>
+
+<%= link_to 'Free Draw!', new_free_draw_path, class: :button, id: "free_draw", 'data-ajax' => false %>
+
+<ul id="solutions_list">
+	<% @solutions.each do |solution| %>
+			
+		<li>
+			<span>Name: <%= solution.username %></span>
+		</li>
+			<%= image_tag solution.picture, class: :solution %>
+	<% end %>
+</ul>

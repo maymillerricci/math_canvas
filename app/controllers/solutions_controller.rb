@@ -6,8 +6,8 @@ class SolutionsController < ApplicationController
   end
 
   def new
-  	@problem = Problem.find(params[:problem_id])
-  	@solution = @problem.solutions.new
+    @problem = Problem.find(params[:problem_id])
+    @solution = @problem.solutions.new
     @active_page = "Solutions"
   end
 
