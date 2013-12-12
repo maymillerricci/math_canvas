@@ -33,13 +33,14 @@
 
 
 div.nav {
-	background-color: #33CCCC;
-	/*background-color: blue;*/
+	/*background-color: #9494FF;*/
+	/*background-color: #CCCC00;*/
+	background-color: #CCCCCC;
 	border-radius: 20px;
 	width: 960px;
 	height: 70px;
 	font-size: 80%;
-	border: 1px solid gray;
+	border: 1px solid darkgray;
 	margin: 10px 0px;
 	/*padding: 20px 0px;*/
 
@@ -53,11 +54,21 @@ div.nav div.main_link {
 	/*margin-left: -40px;*/
 	padding-left: 20px;
 }
-div.container div.nav a.ui-link, div.nav h2 {
-	color: #3333CC;
+div.container div.nav a.ui-link {
+	/*color: #009999;*/
+	color: teal;
 	/*color: rgb(55, 96, 76);*/
 	text-shadow: none;
 
+}
+div.nav h2 {
+	/*color: #4811AE;*/
+	color: #330099;
+	/*color: white;*/
+	text-shadow: none;
+	text-align: center;
+	font-size: 210%;
+	margin: 0px 0px 0px -30px;
 }
 div.container div.nav a.ui-link {
 	padding: 30px 10px 0px;
@@ -69,18 +80,12 @@ img.logo_small {
 	/*height: 140px;*/
 	margin-left: 35px;
 }
-div.nav h2 {
-	text-align: center;
-	font-size: 210%;
-	color: #6633CC;
-	margin: 0px 0px 0px -30px;
-}
 div.nav div.active.main_link {
 	background-color: white;
 	/*border: 4px solid rgb(55, 96, 76);*/
 }
 div.nav div.active a.ui-link {
-	color: #6633CC;
+	color: #FF0066;
 }
 
 
