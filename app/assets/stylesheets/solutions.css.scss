@@ -132,8 +132,10 @@ div#clear_button {
 }
 .line {
 	height: 40px;
-	background-color: gray;
+	background-color: #660099;
 	margin: 0 auto;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
 }
 .highlight .line {
 	height: 34px;

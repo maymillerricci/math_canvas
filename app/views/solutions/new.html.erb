@@ -298,22 +298,55 @@
 				// curAlpha = 1;
 				highlight($(this));
 				$('.choice_col').removeClass('highlight');
+				$('.line').css('background-color', 'white');
 			});
 
-			// //change color of font weight options depending on current color - use this or not???
-			// $(document).on('vclick', '.choice_col', function() {
-			// 	if(curColor==colorPurple) {
-			// 		$('.line').css('background-color', colorPurple);
-			// 	} else if(curColor==colorBlue) {
-			// 		$('.line').css('background-color', colorBlue);
-			// 	} else if(curColor==colorGreen) {
-			// 		$('.line').css('background-color', colorGreen);
-			// 	} else if(curColor==colorYellow) {
-			// 		$('.line').css('background-color', colorYellow);
-			// 	} else if(curColor==colorPink) {
-			// 		$('.line').css('background-color', colorPink);
-			// 	}
-			// });
+			//change color of font weight options depending on current color
+			$(document).on('vclick', '.choice_col', function() {
+				if(curColor==colorPurple) {
+					$('.line').css('background-color', colorPurple);
+				} else if(curColor==colorBlue) {
+					$('.line').css('background-color', colorBlue);
+				} else if(curColor==colorGreen) {
+					$('.line').css('background-color', colorGreen);
+				} else if(curColor==colorYellow) {
+					$('.line').css('background-color', colorYellow);
+				} else if(curColor==colorOrange) {
+					$('.line').css('background-color', colorOrange);
+				} else if(curColor==colorRed) {
+					$('.line').css('background-color', colorRed);
+				} else if(curColor==colorPink) {
+					$('.line').css('background-color', colorPink);
+				} else if(curColor==colorLightPurple) {
+					$('.line').css('background-color', colorLightPurple);
+				} else if(curColor==colorDarkPurple) {
+					$('.line').css('background-color', colorDarkPurple);
+				} else if(curColor==colorMediumBlue) {
+					$('.line').css('background-color', colorMediumBlue);
+				} else if(curColor==colorSeaGreen) {
+					$('.line').css('background-color', colorSeaGreen);
+				} else if(curColor==colorLightGreen) {
+					$('.line').css('background-color', colorLightGreen);
+				} else if(curColor==colorLightYellow) {
+					$('.line').css('background-color', colorLightYellow);
+				} else if(curColor==colorSalmon) {
+					$('.line').css('background-color', colorSalmon);
+				} else if(curColor==colorBlack) {
+					$('.line').css('background-color', colorBlack);
+				} else if(curColor==colorBrown) {
+					$('.line').css('background-color', colorBrown);
+				} else if(curColor==colorDarkGray) {
+					$('.line').css('background-color', colorDarkGray);
+				} else if(curColor==colorLightGray) {
+					$('.line').css('background-color', colorLightGray);
+				} else if(curColor==colorLightBlue) {
+					$('.line').css('background-color', colorLightBlue);
+				} else if(curColor==colorTeal) {
+					$('.line').css('background-color', colorTeal);
+				} else if(curColor==colorLightPink) {
+					$('.line').css('background-color', colorLightPink);
+				} 
+			});
 
 			//draggable - make stamps draggable and when one is dragged replace with new one
 			$(document).on('vmousedown', '.new_stamp', function() {
