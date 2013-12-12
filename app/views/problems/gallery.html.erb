@@ -3,10 +3,12 @@
 <ul class="problems">
 	<% @problems.each do |problem| %>
 		
-		<li>
-			<span><%= problem.question %></span>
-			<%= link_to 'View Gallery', problem_solutions_path(problem), class: :button %>
-		</li>
+		<div class="row">
+			<li>
+				<span><%= problem.question %></span>
+				<%= link_to 'View Gallery', problem_solutions_path(problem), class: :button %>
+			</li>
+		</div>
 		
 	<% end %> 
 </ul>

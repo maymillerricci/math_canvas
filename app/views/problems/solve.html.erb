@@ -3,10 +3,12 @@
 <ul class="problems">
 	<% @problems.each do |problem| %>
 		
-		<li>
-			<span><%= problem.question %></span>
-			<%= link_to 'Solve!', new_problem_solution_path(problem), class: :button, 'data-ajax' => false %>
-		</li>
+		<div class="row">
+			<li>
+				<span><%= problem.question %></span>
+				<%= link_to 'Solve!', new_problem_solution_path(problem), class: :button, 'data-ajax' => false %>
+			</li>
+		</div>
 		
 	<% end %> 
 </ul>

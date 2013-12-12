@@ -1,6 +1,6 @@
 <h1>Solutions</h1>
-<h2 class="float_left max_width"><%= @problem.question %></h2>
-<%= link_to 'Draw This Problem!', new_problem_solution_path(@problem), class: :button, id: "draw_this_problem", 'data-ajax' => false %>
+<div class="row"><h2 class="max_width"><%= @problem.question %></h2>
+<%= link_to 'Draw This Problem!', new_problem_solution_path(@problem), class: :button, id: "draw_this_problem", 'data-ajax' => false %></div>
 
 <ul id="solutions_list">
 	<% @solutions.each do |solution| %>
@@ -10,5 +10,5 @@
 			Answer: <%= solution.answer %>
 		</li>
 			<%= image_tag solution.picture, class: :solution %>
-	<% end %> 
+	<% end %>
 </ul>

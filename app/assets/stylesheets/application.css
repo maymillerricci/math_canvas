@@ -12,7 +12,10 @@
  *= require jquery.mobile
  *= require_tree .
  */
-
+* {
+	/*margin: 0px;
+	padding: 0px;*/
+}
 @font-face {
   font-family: 'vaground';
   src: url('vaground.ttf') format('truetype');
