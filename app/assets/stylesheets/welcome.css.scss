@@ -6,9 +6,9 @@
 	text-align: center;
 }
 img#logo {
-	width: 310px;
-	height: 220px;
-	padding: 30px 0px 0px;
+	width: 360px;
+	height: 300px;
+	padding: 40px 0px 0px;
 	float: left;
 }
 .float_left {
@@ -19,8 +19,23 @@ img#logo {
 }
 .intro_text {
 	width: 580px;
+	margin: 0;
 }
 h1.title {
 	font-size: 300%;
-	padding: 50px 0px;
+	padding: 30px 0px 15px;
+}
+.footer_text {
+	font-size: 88%;
+	clear: both;
+	padding-top: 30px;
+}
+div.main_content p.footer_text a.ui-link {
+	color: #003300;
+}
+
+.intro_list li {
+	font-size: 100%;
+	list-style-type: disc;
+	padding: 5px 0px;
 }

@@ -1,14 +1,22 @@
 <script>
-	// $('div.nav').remove();
 	$('div.nav').remove();
-	// $('div.nav .logo_small').remove();
-	// $('div.nav').css('padding-top', '284px');
-	// <h2 class="navtitle">Math Canvas</h2>
-				// <%= image_tag "mathcanvaslogo.png", class: :logo_small %>
 </script>
 
 <h1 class="text_align_center title">Math Canvas</h1>
 <%= image_tag "mathcanvaslogo.png", id: :logo %>
-<p class="float_right intro_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<div class="float_right intro_text">
+	<p>Math Canvas is a place where students can draw out solutions to math problems, using artwork to illustrate their individual thinking processes. </p>
+	<p>Math Canvas promotes the following:</p>
+	<ul class="intro_list">
+		<li>Individuality -- each student’s process for solving a problem may be very different from others</li>
+		<li>Creativity -- students represent their mathematical thinking using drawings and symbols, not just with numbers</li>
+		<li>Learning from others -- students can see how others solve a problem, introducing them to alternative ways of thinking</li>
+		<li>Critical thinking and problem solving -- drawing allows students to explain their thinking visually, with a focus on understanding how they get to the answer vs. just the answer itself</li>
+	</ul>
+</div>
+
+
+
 <p class="float_right intro_text"><%= link_to 'Start Solving!', problems_solve_path, class: :button %></p>
+<p class="footer_text">Math Canvas was created at <a href="http://www.codingdojo.com" target="_blank">Coding Dojo</a> by <a href="http://www.maymillerricci.com" target="_blank">May Miller-Ricci</a>.  If you have any questions or comments, please contact me at <a href="mailto:maymillerricci@gmail.com">maymillerricci@gmail.com</a>.</p>
 
