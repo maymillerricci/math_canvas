@@ -30,7 +30,7 @@ h1.title {
 	clear: both;
 	padding-top: 30px;
 }
-div.main_content p.footer_text a.ui-link {
+div.main_content p.footer_text a.ui-link, div.float_right.intro_text p a.ui-link {
 	color: #194719;
 }
 
@@ -42,4 +42,5 @@ div.main_content p.footer_text a.ui-link {
 #start_drawing {
 	padding: 20px;
 	font-size: 140%;
+	margin-left: -100px;
 }
