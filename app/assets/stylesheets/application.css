@@ -15,11 +15,15 @@
 * {
 	/*margin: 0px;
 	padding: 0px;*/
+	letter-spacing: 1.25px;
 }
 @font-face {
   font-family: 'vaground';
-  src: url('vaground.ttf') format('truetype');
-  src: local('vaground'), url('vaground.ttf') format('truetype'); 
+  src: url('vaground.ttf'),
+  	url('vaground.eot'),
+  	url('vaground.svg'),
+  	url('vaground.woff');
+  /*src: local('vaground'), url('vaground.ttf') format('truetype'); */
   font-weight: normal;
   font-style: normal;
 }
