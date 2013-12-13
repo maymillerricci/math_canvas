@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'hirb'
 
 gem 'simple_form'
+# gem 'bootstrap-sass'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

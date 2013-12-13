@@ -1,7 +1,7 @@
 <h1>Free Draw Gallery</h1>
 
 <%= link_to 'Free Draw!', new_free_draw_path, class: :button, id: "free_draw", 'data-ajax' => false %>
-
+<p class='success'><%= notice %></p>
 <ul id="solutions_list">
 	<% @solutions.each do |solution| %>
 			

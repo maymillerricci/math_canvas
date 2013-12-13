@@ -22,7 +22,7 @@ class SolutionsController < ApplicationController
       @solution.correct = "incorrect"
     end
   	@solution.save
-  	redirect_to problem_solutions_path(@problem)
+  	redirect_to problem_solutions_path(@problem), notice: "Your drawing was added to the gallery."
   end
 
    private
