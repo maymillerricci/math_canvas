@@ -11,12 +11,16 @@ CanvasMathTest1::Application.routes.draw do
   get "problems/12/solutions", to: redirect('free_draw')
   
   resources :problems, only: [:new, :create] do
-    resources :solutions, only: [:index, :new, :create]
+    resources :solutions, only: [:index, :new, :create] do
+      resources :likes, only: [:create]
+    end
   end
 
   resources :free_draw, only: [:index, :new, :create] 
   # get "solutions/free_draw"
   # get "solutions/main_gallery"
+
+  # get "solutions/add_like"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,7 +1,7 @@
 class FreeDrawController < ApplicationController
   def index
     @problem = Problem.find(12)
-    @solutions = @problem.solutions.all
+    @solutions = @problem.solutions.order("likes DESC")
     @active_page = "Free_Draw"
   end
 

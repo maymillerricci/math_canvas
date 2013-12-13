@@ -1,7 +1,7 @@
 class SolutionsController < ApplicationController
   def index
   	 @problem = Problem.find(params[:problem_id])
-  	 @solutions = @problem.solutions.all
+     @solutions = @problem.solutions.order("correct ASC, likes DESC")
      @active_page = "Solutions"
   end
 
@@ -15,6 +15,11 @@ class SolutionsController < ApplicationController
   	@problem = Problem.find(params[:problem_id]) #find a way to avoid querying database here?
     @solution = Solution.new(solution_params)
   	@solution.problem_id = params[:problem_id]
+    if @solution.answer == @problem.answer
+      @solution.correct = "correct"
+    else
+      @solution.correct = "incorrect"
+    end
   	@solution.save
   	redirect_to problem_solutions_path(@problem)
   end

@@ -7,6 +7,8 @@
 			
 		<li>
 			<span>Name: <%= solution.username %></span>
+			<span>Likes: <%= solution.likes %></span>
+			<%= link_to image_tag('like.png'), problem_solution_likes_path(@problem, solution), method: :post, id: 'like', title: 'Like!' %>
 		</li>
 			<%= image_tag solution.picture, class: :solution %>
 	<% end %>
