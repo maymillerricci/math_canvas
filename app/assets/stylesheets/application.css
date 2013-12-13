@@ -15,14 +15,14 @@
 * {
 	/*margin: 0px;
 	padding: 0px;*/
-	letter-spacing: 1.25px;
+	letter-spacing: 1.15px;
 }
 @font-face {
-  font-family: 'vaground';
-  src: url('vaground.ttf'),
-  	url('vaground.eot'),
-  	url('vaground.svg'),
-  	url('vaground.woff');
+  font-family: 'vagrounded';
+  src: url('vagrounded.ttf'),
+  	url('vagrounded.eot'),
+  	url('vagrounded.svg'),
+  	url('vagrounded.woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -30,7 +30,7 @@
 .container {
 	width: 960px;
 	margin: 0 auto;
-	font-family: 'vaground', 'Arial Rounded MT Bold', Arial, sans-serif;
+	font-family: 'vagrounded', 'Arial Rounded MT Bold', Arial, sans-serif;
 	font-size: 150%;
 }
 
@@ -40,7 +40,7 @@ div.nav {
 	width: 960px;
 	height: 70px;
 	font-size: 80%;
-	border: 1px solid darkgray;
+	border: 1px solid #5C5858;
 	margin: 10px 0px;
 	/*padding: 20px 0px;*/
 
