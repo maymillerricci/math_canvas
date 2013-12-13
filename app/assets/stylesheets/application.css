@@ -48,6 +48,9 @@ div.nav {
 div.nav ul li {
 	margin-top: -30px;
 }
+li.float_right {
+	padding-top: 35px;
+}
 div.nav div.main_link {
 	/*width: 152px;*/
 	/*margin-left: -40px;*/
