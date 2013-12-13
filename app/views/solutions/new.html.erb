@@ -500,7 +500,7 @@
 
 	<%= simple_form_for [@problem, @solution], html: {multipart: true} do |f| %>
 		 <%= f.input :username, label: 'Name:' %>
-		 <%= f.input :answer, label: 'Answer:' %>
+		 <%= f.input :answer, label: 'Answer: (enter the number only - no units)' %>
 		 <%= f.input :picture, as: :hidden %>
 		 <%= f.button :submit, 'Submit Drawing', class: :button, id: :save %>
 	<% end %>

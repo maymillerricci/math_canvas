@@ -13,11 +13,11 @@ li {
 li span {
 	padding: 0px 25px 0px 0px;
   display: inline-block;
-  max-width: 700px;
+  max-width: 680px;
   clear: both;
   vertical-align: middle;
 }
-div.container a.button.ui-link, div.container ul a.button.ui-link, input#save.btn.button.ui-btn-hidden {
+div.container a.button.ui-link, div.container ul a.button.ui-link {
   background-color: #330099;
   color: white;
   font-size: 90%;
@@ -41,6 +41,9 @@ th, td {
   text-align: center
 }
 
+ul.problems {
+  margin-left: -30px;
+}
 ul.problems li {
   margin-left: 5px;
 }
