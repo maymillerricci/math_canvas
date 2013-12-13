@@ -33,8 +33,6 @@
 
 
 div.nav {
-	/*background-color: #9494FF;*/
-	/*background-color: #CCCC00;*/
 	background-color: #CCCCCC;
 	border-radius: 20px;
 	width: 960px;
@@ -50,14 +48,11 @@ div.nav ul li {
 }
 div.nav div.main_link {
 	/*width: 152px;*/
-	/*background-color: red;*/
 	/*margin-left: -40px;*/
 	padding-left: 20px;
 }
 div.container div.nav a.ui-link {
-	/*color: #009999;*/
-	color: teal;
-	/*color: rgb(55, 96, 76);*/
+	color: #008080;
 	text-shadow: none;
 
 }
