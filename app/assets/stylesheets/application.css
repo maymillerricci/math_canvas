@@ -23,13 +23,9 @@
   	url('vaground.eot'),
   	url('vaground.svg'),
   	url('vaground.woff');
-  /*src: local('vaground'), url('vaground.ttf') format('truetype'); */
   font-weight: normal;
   font-style: normal;
 }
-
-
-
 
 .container {
 	width: 960px;
@@ -37,8 +33,6 @@
 	font-family: 'vaground', 'Arial Rounded MT Bold', Arial, sans-serif;
 	font-size: 150%;
 }
-
-
 
 div.nav {
 	background-color: #CCCCCC;
@@ -74,14 +68,14 @@ div.nav h2 {
 	margin: 0px 0px 0px -30px;
 }
 div.container div.nav a.ui-link {
-	padding: 30px 10px 0px;
+	padding: 30px 8px 0px;
 	margin-top: 100px;
 }
 img.logo_small {
 	width: 110px;
 	margin-top: -10px;
 	/*height: 140px;*/
-	margin-left: 35px;
+	margin-left: 28px;
 }
 div.nav div.active.main_link {
 	background-color: white;
