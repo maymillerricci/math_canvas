@@ -17,6 +17,7 @@ class SolutionsController < ApplicationController
   	@solution.problem_id = params[:problem_id]
     if @solution.answer == @problem.answer
       @solution.correct = "correct"
+      @solution.likes += 1
     else
       @solution.correct = "incorrect"
     end
