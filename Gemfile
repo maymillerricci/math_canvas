@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
+ruby '2.4.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.2.11.1'
 
 # Postgres
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -20,8 +22,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'jquery_mobile_rails'
+gem 'jquery-ui-rails', '~> 4.1.0'
+gem 'jquery_mobile_rails', '~> 1.3.2'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
